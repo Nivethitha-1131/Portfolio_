@@ -28,6 +28,8 @@ function SpecialGlyph({ type }) {
 
 /**
  * Individual Logo Card in the infinite loop.
+ * - If it has a logo: logo is centered on top, name is centered below it.
+ * - If it does not have a logo: just the word is displayed, centered and neat.
  */
 function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
   const { theme } = useTheme();
@@ -35,17 +37,19 @@ function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
 
   // Theme-aware icon color: golden in dark mode, antique bronze in light mode
   const iconHex = theme === 'light' ? '7A2635' : 'C9A45C';
-  const iconUrl = item.icon && !['spark', 'database'].includes(item.icon)
+  const isSpecial = ['spark', 'database'].includes(item.icon);
+  const iconUrl = item.icon && !isSpecial
     ? `https://cdn.simpleicons.org/${item.icon}/${iconHex}`
     : null;
+  const hasLogo = Boolean(item.icon) && !iconError;
 
   return (
     <div
       onMouseEnter={() => onHover(item.label)}
       onMouseLeave={() => onHover(null)}
       className={`
-        group relative flex items-center gap-3 sm:gap-3.5
-        px-4 py-2.5 sm:px-5 sm:py-3
+        group relative flex flex-col items-center justify-center
+        min-w-[96px] sm:min-w-[110px] h-[72px] sm:h-[80px] px-3 py-2
         rounded-xl
         border transition-all duration-300 select-none cursor-pointer shrink-0
         ${
@@ -57,34 +61,34 @@ function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
         }
       `}
     >
-      {/* Icon Pedestal */}
-      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-background/80 border border-hairline/60 flex items-center justify-center shrink-0 group-hover:border-gold/50 transition-colors">
-        {['spark', 'database'].includes(item.icon) ? (
-          <SpecialGlyph type={item.icon} />
-        ) : iconUrl && !iconError ? (
-          <img
-            src={iconUrl}
-            alt={`${item.label} logo`}
-            className="w-4 h-4 sm:w-4.5 sm:h-4.5 object-contain group-hover:scale-110 transition-transform duration-200"
-            loading="lazy"
-            onError={() => setIconError(true)}
-          />
-        ) : (
-          <span className="font-mono text-xs font-bold text-gold">
-            {item.label.slice(0, 2).toUpperCase()}
-          </span>
-        )}
-      </div>
+      {hasLogo ? (
+        <>
+          {/* Centered Logo on top */}
+          <div className="flex items-center justify-center h-6 sm:h-7 mb-1.5 transition-transform duration-200 group-hover:scale-110">
+            {isSpecial ? (
+              <SpecialGlyph type={item.icon} />
+            ) : (
+              <img
+                src={iconUrl}
+                alt=""
+                className="w-5 h-5 sm:w-6 sm:h-6 object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+                loading="lazy"
+                onError={() => setIconError(true)}
+              />
+            )}
+          </div>
 
-      {/* Label & Category */}
-      <div className="flex flex-col text-left leading-none">
-        <span className="text-cream text-xs sm:text-[13px] font-medium tracking-wide group-hover:text-gold transition-colors duration-200 whitespace-nowrap">
+          {/* Name below the logo */}
+          <span className="text-[11px] sm:text-xs font-medium text-cream group-hover:text-gold transition-colors duration-200 text-center whitespace-nowrap leading-tight">
+            {item.label}
+          </span>
+        </>
+      ) : (
+        /* If it does not have a logo, just the word alone, centered & neat */
+        <span className="text-xs sm:text-[13px] font-medium text-cream group-hover:text-gold transition-colors duration-200 text-center whitespace-nowrap leading-tight tracking-wide px-1">
           {item.label}
         </span>
-        <span className="text-[7.5px] sm:text-[8px] font-mono tracking-widest uppercase text-slate/70 mt-1">
-          {item.category}
-        </span>
-      </div>
+      )}
     </div>
   );
 }

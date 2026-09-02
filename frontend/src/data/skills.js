@@ -68,12 +68,12 @@ export const logoLoopTracks = [
     { label: 'Hugging Face',   icon: 'huggingface',   category: 'AI / ML' },
     { label: 'OpenCV',         icon: 'opencv',        category: 'Computer Vision' },
     { label: 'Scikit-learn',   icon: 'scikitlearn',   category: 'AI / ML' },
-    { label: 'LLMs',           icon: 'anthropic',     category: 'GenAI' },
+    { label: 'LLMs',           icon: null,            category: 'GenAI' },
     { label: 'Streamlit',      icon: 'streamlit',     category: 'AI Apps' },
     { label: 'Pandas',         icon: 'pandas',        category: 'Data Science' },
     { label: 'NumPy',          icon: 'numpy',         category: 'Data Science' },
-    { label: 'Generative AI',  icon: 'spark',         category: 'GenAI' },
-    { label: 'RAG Systems',    icon: 'database',      category: 'AI / ML' },
+    { label: 'Generative AI',  icon: null,            category: 'GenAI' },
+    { label: 'RAG Systems',    icon: null,            category: 'AI / ML' },
   ],
 
   // Track 2: Languages, Frontend & Full-Stack (Flows Right)
@@ -89,7 +89,7 @@ export const logoLoopTracks = [
     { label: 'CSS3',          icon: 'css',           category: 'Frontend' },
     { label: 'Java',          icon: 'openjdk',       category: 'Language' },
     { label: 'C Language',    icon: 'c',             category: 'Language' },
-    { label: 'REST APIs',     icon: 'postman',       category: 'Backend' },
+    { label: 'REST APIs',     icon: null,            category: 'Backend' },
   ],
 
   // Track 3: Databases, DevOps, Tools & Cloud (Flows Left)
