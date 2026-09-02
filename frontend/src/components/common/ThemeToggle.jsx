@@ -285,12 +285,6 @@ export default function ThemeToggle() {
     (val) => RESTING_CHAIN_LENGTH + Math.max(0, val)
   );
 
-  // Dynamic handle position (resting length + pull offset)
-  const handleY = useTransform(
-    smoothY,
-    (val) => RESTING_CHAIN_LENGTH + val - 2
-  );
-
   // Interaction refs
   const isDraggingRef = useRef(false);
   const startYRef = useRef(0);
@@ -534,8 +528,8 @@ export default function ThemeToggle() {
           </AnimatePresence>
         </div>
 
-        {/* ── Ornate Hanging Beaded Chain & Luxury Pendant ── */}
-        <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center">
+        {/* ── Ornate Hanging Beaded Chain & Luxury Pendant (Single Connected Assembly) ── */}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
           {/* Decorative brass bracket link connecting moon to chain */}
           <div className="w-1.5 h-1 -mt-0.5 rounded-sm bg-gradient-to-b from-[#C9A45C] to-[#8A6020] shadow-[0_1px_3px_rgba(0,0,0,0.4)] shrink-0" />
 
@@ -544,29 +538,21 @@ export default function ThemeToggle() {
             className="flex flex-col items-center origin-top pointer-events-none"
             style={{ height: chainLength }}
           >
-            <motion.div
-              style={{
-                height: chainLength,
-              }}
-            >
-              {/* Dynamic SVG beaded chain rendered via framer-motion subscriber */}
-              <ChainRenderer chainLength={chainLength} />
-            </motion.div>
+            <ChainRenderer chainLength={chainLength} />
           </motion.div>
 
-          {/* ── Ornate Pendant Handle & Touch Grab Area ── */}
-          <motion.div
-            style={{ y: handleY }}
+          {/* ── Ornate Pendant Handle (Directly Attached Below the Chain) ── */}
+          <div
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
             className="
-              absolute top-0 -translate-x-1/2 left-1/2 flex flex-col items-center justify-center
+              -mt-1.5 flex flex-col items-center justify-center
               cursor-grab active:cursor-grabbing
               touch-none select-none
-              w-12 h-12 -mt-3
-              group
+              p-2.5 -m-2.5
+              group pointer-events-auto
             "
             aria-label="Pull cord ornate handle"
           >
@@ -574,11 +560,11 @@ export default function ThemeToggle() {
             <div className="relative flex items-center justify-center transition-transform duration-200 group-hover:scale-115 group-active:scale-105">
               {/* Ambient glimmer behind finial */}
               <div
-                className="absolute inset-0 rounded-full blur-[5px] bg-gold/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                className="absolute inset-0 rounded-full blur-[6px] bg-gold/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
               />
               <OrnatePendantFinial />
             </div>
-          </motion.div>
+          </div>
         </div>
       </motion.div>
     </div>
