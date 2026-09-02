@@ -1,46 +1,50 @@
 import SectionReveal from '../components/common/SectionReveal';
 import AnimatedHeading from '../components/common/AnimatedHeading';
-import SkillPill from '../components/skills/SkillPill';
-import { skillsData } from '../data/skills';
+import LogoLoop from '../components/skills/LogoLoop';
 
 /**
- * Skills page — grouped pill/tag grid by category.
+ * Skills section — Continuous Interactive Logo Loop showcasing technical capabilities.
  */
 export default function Skills() {
-  const categories = Object.entries(skillsData);
-
   return (
     <section
       id="skills"
-      className="relative py-16 sm:py-24 lg:py-36"
-      aria-label="Skills — technical capabilities"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      aria-label="Skills — technical capabilities logo loop"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16">
+      {/* Background ambient lighting */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        <div
+          className="absolute rounded-full bg-gold/5"
+          style={{
+            top: '40%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 'clamp(300px, 60vw, 800px)',
+            height: 'clamp(200px, 40vh, 500px)',
+            filter: 'blur(120px)',
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16 mb-4 sm:mb-6">
         <SectionReveal>
-          <AnimatedHeading label="04 — Skills" heading={"Technical\nCapabilities"} />
-
-          {/* Skill groups */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 sm:gap-10 lg:gap-16">
-            {categories.map(([category, skills]) => (
-              <div key={category}>
-                {/* Category label */}
-                <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-5">
-                  <span className="text-[9px] sm:text-[10px] font-medium tracking-widest uppercase text-gold whitespace-nowrap">
-                    {category}
-                  </span>
-                  <div className="flex-1 h-px bg-hairline" />
-                </div>
-
-                {/* Pill grid */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2.5">
-                  {skills.map(skill => (
-                    <SkillPill key={skill.label} label={skill.label} icon={skill.icon} />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <AnimatedHeading
+            label="04 — Skills"
+            heading={"Technical\nCapabilities"}
+          />
+          <p className="text-slate text-xs sm:text-sm font-light max-w-xl -mt-2 sm:-mt-4">
+            A comprehensive, evolving stack of intelligence frameworks, modern languages, and cloud infrastructure engineered for production.
+          </p>
         </SectionReveal>
+      </div>
+
+      {/* ── Continuous Infinite Logo Loop ── */}
+      <div className="relative z-10 w-full overflow-hidden">
+        <LogoLoop />
       </div>
     </section>
   );
