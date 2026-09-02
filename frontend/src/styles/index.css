@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme Tokens ─────────────────────────────────── */
+:root {
+  /* Dark Burgundy Estate (default) */
+  --bg:      #0F0A0B;
+  --surface: #181012;
+  --card:    #221417;
+  --primary: #7A2635;
+  --gold:    #C9A45C;
+  --text:    #F7F1E8;
+  --muted:   #A39598;
+  --border:  #2C1B1F;
+
+  /* Transition for theme switch */
+  --theme-transition-duration: 0.45s;
+  --theme-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  /* Light Ivory Estate */
+  --bg:      #FCF8F2;
+  --surface: #F5EEE4;
+  --card:    #FFFFFF;
+  --primary: #7A2635;
+  --gold:    #B58A3E;
+  --text:    #24191A;
+  --muted:   #736365;
+  --border:  #E8DEC8;
+}
+
+/* ─── Global Resets & Anti-Overflow ───────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ─── Suppress transitions on initial load (no-flash) ── */
+.no-theme-transition *,
+.no-theme-transition *::before,
+.no-theme-transition *::after {
+  transition: none !important;
+}
+
+/* ─── Smooth Theme Transition (all elements) ────────── */
+*:not(svg):not(svg *):not(.no-theme-transition):not(.no-theme-transition *) {
+  transition:
+    background-color var(--theme-transition-duration) var(--theme-transition-ease),
+    color var(--theme-transition-duration) var(--theme-transition-ease),
+    border-color var(--theme-transition-duration) var(--theme-transition-ease),
+    fill var(--theme-transition-duration) var(--theme-transition-ease),
+    stroke var(--theme-transition-duration) var(--theme-transition-ease),
+    box-shadow var(--theme-transition-duration) var(--theme-transition-ease),
+    outline-color var(--theme-transition-duration) var(--theme-transition-ease);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* ─── Typography Utilities ───────────────────────────── */
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Gold shimmer sweep across text */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--text)  0%,
+    var(--text)  30%,
+    var(--gold)  50%,
+    var(--text)  70%,
+    var(--text)  100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ─── Gold Divider ───────────────────────────────────── */
+.gold-divider {
+  width: 40px;
+  height: 1px;
+  background-color: var(--gold);
+  opacity: 0.6;
+}
+
+/* ─── Scrollbar (subtle) ─────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ─── Focus Outline ──────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
