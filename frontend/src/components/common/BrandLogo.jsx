@@ -137,22 +137,22 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
         className="pointer-events-none absolute -inset-1.5 rounded-full bg-gold/25 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       />
 
-      {/* ── Creative 'N' Brand Logo Badge ── */}
+      {/* ── Standalone Creative 'N' Brand Logo Emblem ── */}
       <div
         className="
-          relative flex items-center gap-2.5 sm:gap-3
-          px-2.5 sm:px-3.5 py-1 sm:py-1.5
+          relative flex items-center justify-center
+          w-9 h-9 sm:w-10 sm:h-10
           rounded-full
           bg-surface/80 backdrop-blur-md
           border border-hairline/80
-          group-hover:border-gold/50
-          group-hover:shadow-[0_0_24px_rgba(201,162,75,0.28)]
+          group-hover:border-gold/60
+          group-hover:shadow-[0_0_24px_rgba(201,162,75,0.35)]
           transition-all duration-300
         "
       >
         {/* ── Creative 3D 'N' Emblem ── */}
         <motion.div
-          className="relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-gold/25 via-[#C9A45C]/15 to-transparent border border-gold/40 group-hover:border-gold group-hover:shadow-[0_0_14px_rgba(201,162,75,0.5)] transition-all duration-300 shrink-0"
+          className="relative flex items-center justify-center w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full bg-gradient-to-br from-gold/25 via-[#C9A45C]/15 to-transparent border border-gold/40 group-hover:border-gold group-hover:shadow-[0_0_16px_rgba(201,162,75,0.5)] transition-all duration-300 shrink-0"
           animate={
             !shouldReduceMotion
               ? { scale: [1, 1.03, 1] }
@@ -162,16 +162,6 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
         >
           <CreativeNLogo />
         </motion.div>
-
-        {/* ── Brand Wordmark: Nivethitha • Portfolio ── */}
-        <div className="flex flex-col justify-center select-none text-left leading-none">
-          <span className="font-serif font-semibold text-cream text-[13px] sm:text-[14.5px] tracking-[0.16em] group-hover:text-gold transition-colors duration-200">
-            Nivethitha
-          </span>
-          <span className="text-[7.5px] sm:text-[8px] font-mono tracking-[0.25em] uppercase text-gold/80 font-medium mt-0.5">
-            Portfolio
-          </span>
-        </div>
       </div>
     </motion.a>
   );
