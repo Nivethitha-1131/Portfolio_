@@ -210,11 +210,15 @@ export default function Hero({ onContactOpen }) {
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.6) 18%,
-              rgba(0,0,0,0.9) 32%,
-              black 50%,
-              black 80%,
-              rgba(0,0,0,0.85) 92%,
+              transparent 8%,
+              rgba(0,0,0,0.04) 16%,
+              rgba(0,0,0,0.14) 25%,
+              rgba(0,0,0,0.32) 36%,
+              rgba(0,0,0,0.58) 48%,
+              rgba(0,0,0,0.84) 60%,
+              black 70%,
+              black 82%,
+              rgba(0,0,0,0.8) 93%,
               transparent 100%
             ),
             linear-gradient(
@@ -230,11 +234,15 @@ export default function Hero({ onContactOpen }) {
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.6) 18%,
-              rgba(0,0,0,0.9) 32%,
-              black 50%,
-              black 80%,
-              rgba(0,0,0,0.85) 92%,
+              transparent 8%,
+              rgba(0,0,0,0.04) 16%,
+              rgba(0,0,0,0.14) 25%,
+              rgba(0,0,0,0.32) 36%,
+              rgba(0,0,0,0.58) 48%,
+              rgba(0,0,0,0.84) 60%,
+              black 70%,
+              black 82%,
+              rgba(0,0,0,0.8) 93%,
               transparent 100%
             ),
             linear-gradient(
@@ -255,12 +263,19 @@ export default function Hero({ onContactOpen }) {
           ease: 'easeInOut',
         }}
       >
-        <img
-          src="/assets/portrait.png"
-          alt="Nivethitha Ramesh"
-          className="h-full w-auto object-contain max-w-[85vw]"
-          draggable="false"
-        />
+        <div className="relative h-full w-auto">
+          <img
+            src="/assets/portrait.png"
+            alt="Nivethitha Ramesh"
+            className="h-full w-auto object-contain max-w-[85vw]"
+            draggable="false"
+          />
+          {/* Ethereal bottom dissolve overlay matching theme background */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none"
+          />
+        </div>
       </motion.div>
 
       {/* ── Layer 3 — Cohesive Ultra-wide & Multi-screen Content Container ── */}
