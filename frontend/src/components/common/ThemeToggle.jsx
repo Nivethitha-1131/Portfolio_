@@ -3,13 +3,67 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, anima
 import { useTheme } from '../../hooks/useTheme';
 
 /**
- * Vintage Pull-String Lamp Theme Toggle
+ * Vintage Pull-Cord Light Switch
  *
- * Moon and Sun icons are scaled to 100% identical dimensions (24x24 viewBox, 18px outer bounds).
- * Moon/Sun Celestial Icon is vertically centered with navbar text ("Let's Talk", "Home", etc).
+ * Real interactive mechanical pull switch:
+ * - Click or drag the cord/handle downward with natural stretch and resistance physics.
+ * - Tripping threshold (26px) triggers the light ON / OFF state with tactile mechanical bounce.
+ * - Smooth elastic snap-back returns the cord and brass weight to its resting position.
+ * - Distinct lighting states:
+ *     • ON  -> Illuminated radiant sun lamp with warm ambient glow.
+ *     • OFF -> Dimmed nocturnal crescent moon with subtle starlight glimmer.
+ * - Touch-friendly 44x44px touch-action:none grab area for seamless mobile dragging.
  */
 
-const PULL_THRESHOLD = 32;
+const PULL_THRESHOLD = 26;
+const MAX_PULL = 46;
+const RESTING_STRING_LENGTH = 24;
+
+/**
+ * Synthesized tactile switch click sound using Web Audio API (no assets needed).
+ */
+function playSwitchSound(isTurningOn) {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const now = ctx.currentTime;
+
+    // Primary metallic snap
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+
+    osc1.type = 'triangle';
+    osc1.frequency.setValueAtTime(isTurningOn ? 1400 : 1100, now);
+    osc1.frequency.exponentialRampToValueAtTime(isTurningOn ? 420 : 320, now + 0.028);
+
+    gain1.gain.setValueAtTime(0.09, now);
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.028);
+
+    osc1.start(now);
+    osc1.stop(now + 0.03);
+
+    // Subtle resonance click
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(isTurningOn ? 850 : 650, now + 0.006);
+    osc2.frequency.exponentialRampToValueAtTime(200, now + 0.035);
+
+    gain2.gain.setValueAtTime(0.06, now + 0.006);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+    osc2.start(now + 0.006);
+    osc2.stop(now + 0.038);
+  } catch {
+    // Silently continue if audio context is unavailable or restricted
+  }
+}
 
 function GlowingGoldSunIcon() {
   const points = [];
@@ -90,47 +144,149 @@ export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
   const isLight = theme === 'light';
 
-  // Motion value for pull distance (y)
+  // Motion value for vertical pull offset (y)
   const y = useMotionValue(0);
-  const smoothY = useSpring(y, { stiffness: 400, damping: 20 });
+  const smoothY = useSpring(y, { stiffness: 480, damping: 22 });
 
-  // Dynamic values driven by spring position
-  const glowScale = useTransform(smoothY, [0, PULL_THRESHOLD], [0.8, 1.85]);
-  const glowOpacity = useTransform(smoothY, [0, PULL_THRESHOLD], [0.2, 0.95]);
-  const stringLength = useTransform(smoothY, [0, PULL_THRESHOLD], [24, 44]);
+  // Micro-flex on the fixed lamp anchor when pulled with tension
+  const lampFlex = useTransform(smoothY, [0, PULL_THRESHOLD, MAX_PULL], [0, 1.4, 2.8]);
 
-  const isAnimatingRef = useRef(false);
+  // Dynamic values driven by pull position
+  const glowScale = useTransform(
+    smoothY,
+    [0, PULL_THRESHOLD, MAX_PULL],
+    [isLight ? 1.4 : 0.85, isLight ? 2.1 : 1.7, isLight ? 2.3 : 1.9]
+  );
+  const glowOpacity = useTransform(
+    smoothY,
+    [0, PULL_THRESHOLD, MAX_PULL],
+    [isLight ? 0.8 : 0.28, 0.95, 1]
+  );
+  const stringHeight = useTransform(
+    smoothY,
+    (val) => RESTING_STRING_LENGTH + Math.max(0, val)
+  );
 
-  // Single click trigger handler
-  const handleAction = (e) => {
-    if (e) e.preventDefault();
-    if (isAnimatingRef.current) return;
-    isAnimatingRef.current = true;
+  // Interaction refs
+  const isDraggingRef = useRef(false);
+  const startYRef = useRef(0);
+  const startTimeRef = useRef(0);
+  const hasTrippedRef = useRef(false);
+  const isAutoAnimatingRef = useRef(false);
 
-    // Instantly toggle theme state
-    toggle();
+  // Spring snap-back with mechanical elastic bounce
+  const springRelease = () => {
+    animate(y, 0, {
+      type: 'spring',
+      stiffness: 520,
+      damping: 13.5,
+      mass: 0.52,
+    });
+  };
 
-    // Perform lamp string pull & spring snap-back animation
-    animate(y, PULL_THRESHOLD, {
-      duration: 0.16,
-      ease: [0.33, 1, 0.68, 1],
+  // Programmatic pull-and-release (for quick click/tap)
+  const triggerAutoPull = () => {
+    if (isAutoAnimatingRef.current) return;
+    isAutoAnimatingRef.current = true;
+
+    animate(y, PULL_THRESHOLD + 5, {
+      duration: 0.13,
+      ease: [0.22, 1, 0.36, 1],
       onComplete: () => {
+        toggle();
+        playSwitchSound(!isLight);
+        if (typeof window !== 'undefined' && window.navigator?.vibrate) {
+          window.navigator.vibrate(14);
+        }
+
         animate(y, 0, {
           type: 'spring',
-          stiffness: 450,
-          damping: 18,
-          mass: 0.7,
+          stiffness: 520,
+          damping: 13.5,
+          mass: 0.52,
           onComplete: () => {
-            isAnimatingRef.current = false;
+            isAutoAnimatingRef.current = false;
           },
         });
       },
     });
   };
 
+  // Pointer Down (Mouse click or Touch start)
+  const handlePointerDown = (e) => {
+    e.preventDefault();
+    if (isAutoAnimatingRef.current) return;
+
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // Ignore if pointer capture fails
+    }
+
+    isDraggingRef.current = true;
+    startYRef.current = e.clientY;
+    startTimeRef.current = Date.now();
+    hasTrippedRef.current = false;
+  };
+
+  // Pointer Move (Dragging downward)
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return;
+
+    const rawDeltaY = e.clientY - startYRef.current;
+    if (rawDeltaY <= 0) {
+      y.set(0);
+      return;
+    }
+
+    // Physical spring resistance past threshold
+    let pull = rawDeltaY;
+    if (pull > PULL_THRESHOLD) {
+      const excess = pull - PULL_THRESHOLD;
+      pull = PULL_THRESHOLD + excess * 0.38;
+    }
+    pull = Math.min(pull, MAX_PULL);
+    y.set(pull);
+
+    // Trip the switch once threshold is crossed during drag
+    if (pull >= PULL_THRESHOLD && !hasTrippedRef.current) {
+      hasTrippedRef.current = true;
+      toggle();
+      playSwitchSound(!isLight);
+      if (typeof window !== 'undefined' && window.navigator?.vibrate) {
+        window.navigator.vibrate(14);
+      }
+    }
+  };
+
+  // Pointer Up / Cancel (Release cord)
+  const handlePointerUp = (e) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // Ignore
+    }
+
+    const elapsed = Date.now() - startTimeRef.current;
+    const rawDeltaY = e.clientY - startYRef.current;
+
+    // If it was a quick click/tap without dragging, run programmatic pull
+    if (rawDeltaY < 6 && elapsed < 300) {
+      triggerAutoPull();
+      return;
+    }
+
+    // If user dragged, release with elastic bounce
+    springRelease();
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
-      handleAction(e);
+      e.preventDefault();
+      triggerAutoPull();
     }
   };
 
@@ -139,13 +295,12 @@ export default function ThemeToggle() {
       role="button"
       tabIndex={0}
       id="vintage-theme-toggle"
-      aria-label={`Switch to ${isLight ? 'Dark Burgundy Estate' : 'Light Ivory Estate'} theme`}
+      aria-label={`Pull-cord light switch: currently ${isLight ? 'ON (Light)' : 'OFF (Dark)'}. Pull to switch.`}
       aria-pressed={isLight}
-      onClick={handleAction}
       onKeyDown={handleKeyDown}
-      className="relative flex items-center justify-center cursor-pointer select-none group outline-none focus:outline-none focus:ring-0 focus-visible:outline-none"
-      title="Pull string to switch theme"
-      style={{ width: '32px', height: '28px' }}
+      className="relative flex items-center justify-center select-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none"
+      title="Pull cord downward to switch light"
+      style={{ width: '36px', height: '32px' }}
     >
       {/* ── SVG Defs for Gradients ── */}
       <svg width="0" height="0" className="absolute">
@@ -158,31 +313,31 @@ export default function ThemeToggle() {
         </defs>
       </svg>
 
-      {/* ── Warm Gold Radial Glow ── */}
+      {/* ── Ambient Lamp Glow (Illuminated when ON, dimmed when OFF) ── */}
       <motion.div
-        className="absolute rounded-full pointer-events-none"
+        className="absolute rounded-full pointer-events-none transition-colors duration-500"
         style={{
-          width: '36px',
-          height: '36px',
+          width: isLight ? '52px' : '36px',
+          height: isLight ? '52px' : '36px',
           scale: glowScale,
           opacity: glowOpacity,
           background: isLight
-            ? 'radial-gradient(circle, rgba(181,138,62,0.55) 0%, rgba(181,138,62,0) 70%)'
-            : 'radial-gradient(circle, rgba(201,164,92,0.65) 0%, rgba(201,164,92,0) 70%)',
-          filter: 'blur(4px)',
+            ? 'radial-gradient(circle, rgba(220,175,80,0.7) 0%, rgba(201,164,92,0.3) 45%, rgba(201,164,92,0) 75%)'
+            : 'radial-gradient(circle, rgba(201,164,92,0.45) 0%, rgba(201,164,92,0) 70%)',
+          filter: isLight ? 'blur(6px)' : 'blur(4px)',
         }}
       />
 
-      {/* ── Interactive Lamp Pull Assembly (Moon/Sun centered with navbar text) ── */}
+      {/* ── Fixed Celestial Lamp Fixture (Moon/Sun Anchor) ── */}
       <motion.div
         className="relative flex flex-col items-center"
-        style={{ y: smoothY }}
+        style={{ y: lampFlex }}
       >
-        {/* ── Moon / Sun Celestial Icon (Identical 24x24 Size) ── */}
-        <div className="relative w-6 h-6 flex items-center justify-center text-gold drop-shadow-[0_2px_8px_rgba(201,164,92,0.35)]">
+        {/* ── Moon / Sun Celestial Icon (Fixed 24x24) ── */}
+        <div className="relative w-6 h-6 flex items-center justify-center text-gold drop-shadow-[0_2px_10px_rgba(201,164,92,0.4)]">
           <AnimatePresence mode="wait" initial={false}>
             {isLight ? (
-              /* Glowing Gold Pointed Sun Disc (Exact same size as moon) */
+              /* Glowing Gold Pointed Sun Lamp (Light ON) */
               <motion.div
                 key="glowing-gold-sun"
                 initial={{ scale: 0.4, rotate: -60, opacity: 0 }}
@@ -194,7 +349,7 @@ export default function ThemeToggle() {
                 <GlowingGoldSunIcon />
               </motion.div>
             ) : (
-              /* Crescent Moon Icon (Exact same size as sun) */
+              /* Crescent Moon Fixture (Light OFF) */
               <motion.svg
                 key="moon"
                 initial={{ scale: 0.4, rotate: 60, opacity: 0 }}
@@ -219,32 +374,51 @@ export default function ThemeToggle() {
           </AnimatePresence>
         </div>
 
-        {/* ── Pull String & Bead hanging down below Moon/Sun icon ── */}
-        <div className="absolute top-full flex flex-col items-center pointer-events-auto">
-          {/* Thin Gold Pull String */}
+        {/* ── Interactive Hanging Pull String (Anchored at base of fixture) ── */}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center">
+          {/* Dynamic Stretchy Cord */}
           <motion.div
-            className="w-[1.5px] bg-gradient-to-b from-gold via-[#F5E0A3] to-gold shadow-[0_0_3px_rgba(201,164,92,0.4)]"
-            style={{ height: stringLength }}
+            className="w-[1.5px] bg-gradient-to-b from-gold via-[#F5E0A3] to-gold shadow-[0_0_4px_rgba(201,164,92,0.5)] origin-top pointer-events-none"
+            style={{ height: stringHeight }}
           />
 
-          {/* Turned Gold Bead Ornament */}
+          {/* ── Pull Handle Assembly & Touch Grab Area ── */}
           <motion.div
-            className="flex flex-col items-center group-hover:scale-110 transition-transform duration-200"
-            style={{ marginTop: '-1px' }}
+            style={{ y: smoothY }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            className="
+              absolute top-0 -translate-y-1/2 flex flex-col items-center justify-center
+              cursor-grab active:cursor-grabbing
+              touch-none select-none
+              w-12 h-12
+              group
+            "
+            aria-label="Pull cord handle"
           >
-            {/* Top tiny bead ring */}
-            <div className="w-1.5 h-1.5 rounded-full bg-gold shadow-sm border border-[#7A5B1E]/40" />
-
-            {/* Main decorative turned bead */}
+            {/* Visual Brass Weight Handle */}
             <div
-              className="w-3 h-4 rounded-b-full rounded-t-sm shadow-[0_2px_6px_rgba(0,0,0,0.4)] relative overflow-hidden"
+              className="flex flex-col items-center pointer-events-none transition-transform duration-150 group-hover:scale-110 group-active:scale-105"
               style={{
-                background: 'radial-gradient(circle at 35% 35%, #FFF0C2 0%, #C9A45C 50%, #7A5B1E 100%)',
-                border: '0.5px solid rgba(255,240,194,0.5)',
+                marginTop: `${RESTING_STRING_LENGTH}px`,
               }}
             >
-              {/* Highlight gleam */}
-              <div className="absolute top-0.5 left-0.5 w-1 h-1 rounded-full bg-white/70 blur-[0.5px]" />
+              {/* Top tiny brass ring connecting to cord */}
+              <div className="w-1.5 h-1.5 rounded-full bg-gold shadow-sm border border-[#7A5B1E]/50" />
+
+              {/* Main turned brass pendant weight */}
+              <div
+                className="w-3.5 h-4.5 rounded-b-full rounded-t-sm shadow-[0_2px_8px_rgba(0,0,0,0.5)] relative overflow-hidden"
+                style={{
+                  background: 'radial-gradient(circle at 35% 35%, #FFF0C2 0%, #C9A45C 50%, #7A5B1E 100%)',
+                  border: '0.5px solid rgba(255,240,194,0.6)',
+                }}
+              >
+                {/* Specular highlight gleam */}
+                <div className="absolute top-0.5 left-0.5 w-1 h-1.5 rounded-full bg-white/75 blur-[0.4px]" />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -252,3 +426,4 @@ export default function ThemeToggle() {
     </div>
   );
 }
+
