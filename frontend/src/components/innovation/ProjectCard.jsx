@@ -2,7 +2,7 @@ import { useTilt } from '../../hooks/useTilt';
 
 function IconGitHub() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
       fill="currentColor" aria-hidden="true">
       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
     </svg>
@@ -11,7 +11,7 @@ function IconGitHub() {
 
 function IconExternalLink() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
       <polyline points="15 3 21 3 21 9" />
@@ -41,8 +41,9 @@ export default function ProjectCard({
       onMouseLeave={tilt.onMouseLeave}
       onMouseEnter={tilt.onMouseEnter}
       className="
-        group flex flex-col h-full min-h-[300px] bg-surface border border-hairline rounded-sm p-6 sm:p-7 lg:p-8
-        transition-shadow duration-[250ms] ease-out
+        group flex flex-col h-full min-h-[280px] sm:min-h-[300px] bg-surface border border-hairline rounded-sm
+        p-5 sm:p-7 lg:p-8
+        transition-all duration-[250ms] ease-out
         hover:shadow-[0_12px_40px_0_rgba(201,162,75,0.16)]
         hover:border-gold/40
       "
@@ -51,11 +52,11 @@ export default function ProjectCard({
       {/* Top accent line */}
       <div
         aria-hidden="true"
-        className="h-px w-10 bg-gold/30 mb-5 sm:mb-6 transition-all duration-300 group-hover:w-full group-hover:bg-gold/20"
+        className="h-px w-10 bg-gold/30 mb-4 sm:mb-6 transition-all duration-300 group-hover:w-full group-hover:bg-gold/20"
       />
 
       {/* Title */}
-      <h3 className="font-serif text-xl sm:text-2xl text-cream leading-tight mb-2 min-h-[1.75rem]">
+      <h3 className="font-serif text-lg sm:text-xl md:text-2xl text-cream leading-tight mb-2 min-h-[1.5rem] sm:min-h-[1.75rem]">
         {title || <span className="opacity-30 italic font-sans text-lg">Project Title</span>}
       </h3>
 
@@ -70,12 +71,12 @@ export default function ProjectCard({
       </p>
 
       {/* Tech tags */}
-      <div className="flex flex-wrap gap-2 mb-5 sm:mb-6">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-5 sm:mb-6">
         {tags && tags.length > 0 ? (
           tags.map(tag => (
             <span
               key={tag}
-              className="text-[9px] sm:text-[10px] font-medium tracking-wide text-slate border border-hairline px-2.5 py-1 rounded-sm group-hover:border-gold/30 transition-colors duration-250"
+              className="text-[9px] sm:text-[10px] font-medium tracking-wide text-slate border border-hairline px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-sm group-hover:border-gold/30 transition-colors duration-250"
             >
               {tag}
             </span>
@@ -90,13 +91,13 @@ export default function ProjectCard({
       </div>
 
       {/* Links */}
-      <div className="flex items-center gap-4 mt-auto pt-2 border-t border-hairline/40">
+      <div className="flex items-center gap-3 sm:gap-4 mt-auto pt-2 border-t border-hairline/40">
         {github && (
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-medium tracking-widest uppercase text-slate hover:text-gold transition-colors py-1"
+            className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium tracking-widest uppercase text-slate hover:text-gold transition-colors py-2 px-2 -ml-2 rounded-sm active:bg-white/5"
             aria-label={`View ${title || 'project'} on GitHub`}
           >
             <IconGitHub />
@@ -108,7 +109,7 @@ export default function ProjectCard({
             href={live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-medium tracking-widest uppercase text-slate hover:text-gold transition-colors py-1"
+            className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium tracking-widest uppercase text-slate hover:text-gold transition-colors py-2 px-2 rounded-sm active:bg-white/5"
             aria-label={`View ${title || 'project'} live`}
           >
             <IconExternalLink />

@@ -21,7 +21,7 @@ const PANEL_VARIANTS = {
 
 function IconClose() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
       fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
       <line x1="18" y1="6" x2="6" y2="18" />
       <line x1="6" y1="6" x2="18" y2="18" />
@@ -177,29 +177,29 @@ export default function ContactModal({ isOpen, onClose }) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="relative w-full max-w-lg bg-surface border border-hairline rounded-sm p-6 sm:p-8 md:p-10 my-auto max-h-[92vh] overflow-y-auto shadow-2xl"
+            className="relative w-full max-w-lg bg-surface border border-hairline rounded-sm p-5 sm:p-8 md:p-10 my-auto max-h-[90dvh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
+            {/* Close button (min 44x44px touch target) */}
             <button
               id="contact-modal-close"
               onClick={onClose}
               aria-label="Close contact modal"
-              className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 text-slate hover:text-cream transition-colors"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 w-11 h-11 flex items-center justify-center rounded-sm text-slate hover:text-cream transition-colors cursor-pointer"
             >
               <IconClose />
             </button>
 
             {/* Header */}
-            <p className="text-[9px] sm:text-[10px] tracking-widest uppercase text-gold mb-2 sm:mb-3 font-medium">Get in Touch</p>
+            <p className="text-[9px] sm:text-[10px] tracking-widest uppercase text-gold mb-1.5 sm:mb-2 font-medium">Get in Touch</p>
             <h2 className="font-serif text-2xl sm:text-3xl text-cream mb-1">Let's Talk</h2>
             <div className="gold-divider mb-5 sm:mb-7" />
 
-            {/* Social links */}
-            <div className="flex flex-col gap-2.5 sm:gap-3 mb-6 sm:mb-8">
+            {/* Social links with touch padding */}
+            <div className="flex flex-col gap-1.5 sm:gap-2 mb-6 sm:mb-8">
               <a
                 href="mailto:nivethitha1131@gmail.com"
-                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all"
+                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all py-1"
               >
                 <span className="text-gold group-hover:text-gold/70 transition-colors shrink-0">
                   <IconMail />
@@ -210,7 +210,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 href="https://www.linkedin.com/in/nivethitha-ramesh/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all"
+                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all py-1"
               >
                 <span className="text-gold group-hover:text-gold/70 transition-colors shrink-0">
                   <IconLinkedIn />
@@ -221,7 +221,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 href="https://github.com/Nivethitha-1131"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all"
+                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all py-1"
               >
                 <span className="text-gold group-hover:text-gold/70 transition-colors shrink-0">
                   <IconGitHub />
@@ -232,7 +232,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 href="https://leetcode.com/u/Nivethitha_R/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all"
+                className="flex items-center gap-3 text-xs sm:text-sm text-slate hover:text-gold transition-colors group break-all py-1"
               >
                 <span className="text-gold group-hover:text-gold/70 transition-colors shrink-0">
                   <IconLeetCode />
@@ -303,7 +303,7 @@ export default function ContactModal({ isOpen, onClose }) {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="mt-1 self-start inline-flex items-center gap-2 border border-gold text-gold text-[9px] sm:text-[10px] font-medium tracking-widest uppercase px-6 py-3 sm:px-7 sm:py-3.5 hover:bg-gold/5 hover:shadow-[0_0_16px_0_rgba(201,162,75,0.25)] transition-all duration-250 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="mt-1 w-full sm:w-auto self-start inline-flex items-center justify-center gap-2 border border-gold text-gold text-[10px] sm:text-[11px] font-medium tracking-widest uppercase px-6 py-3.5 sm:px-7 sm:py-3.5 hover:bg-gold/5 hover:shadow-[0_0_16px_0_rgba(201,162,75,0.25)] transition-all duration-250 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   {status === 'sending' ? 'Sending…' : 'Send Message'}
                 </button>

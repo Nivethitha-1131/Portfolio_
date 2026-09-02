@@ -67,8 +67,8 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
       {/* ── Glassmorphic Living Capsule ── */}
       <div
         className="
-          relative flex items-center gap-2.5 sm:gap-3
-          px-3 sm:px-4 py-1.5 sm:py-2
+          relative flex items-center gap-2 sm:gap-3
+          px-2.5 sm:px-4 py-1 sm:py-2
           rounded-full
           bg-surface/80 backdrop-blur-md
           border border-hairline/80

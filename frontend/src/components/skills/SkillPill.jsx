@@ -31,10 +31,10 @@ export default function SkillPill({ label, icon }) {
       className="
         group inline-flex items-center gap-1.5 sm:gap-2
         text-[10px] sm:text-[11px] font-medium tracking-wide text-slate
-        border border-hairline rounded-sm px-3 py-1.5 sm:px-4 sm:py-2
+        border border-hairline rounded-sm px-2.5 py-1.5 sm:px-3.5 sm:py-2
         transition-all duration-200
         hover:border-gold/60 hover:text-gold cursor-default
-        select-none
+        select-none max-w-full break-words
       "
     >
       {iconSrc && iconVisible && (
@@ -43,12 +43,12 @@ export default function SkillPill({ label, icon }) {
           src={iconSrc}
           alt=""
           aria-hidden="true"
-          className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+          className="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-200 shrink-0"
           loading="lazy"
           onError={() => setIconVisible(false)}
         />
       )}
-      {label}
+      <span className="truncate">{label}</span>
     </span>
   );
 }

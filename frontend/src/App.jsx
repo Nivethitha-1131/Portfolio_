@@ -29,11 +29,11 @@ export default function App() {
       {/* Fixed top navigation */}
       <Navbar onContactOpen={openContact} />
 
-      {/* Fixed left sidebar — social icons + scroll indicator */}
+      {/* Fixed left sidebar — social icons + scroll indicator (desktop only) */}
       <LeftSidebar />
 
       {/* Single-scroll page canvas */}
-      <main>
+      <main className="w-full overflow-x-clip">
         <Home onContactOpen={openContact} />
         <Journey />
         <Innovation />
@@ -41,15 +41,15 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-hairline py-10">
+      <footer className="border-t border-hairline py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col items-center gap-6">
-          {/* Back to Home CTA — ditto matching jumping scroll indicator */}
+          {/* Back to Home CTA */}
           <div>
             <button
               onClick={() => {
                 document.querySelector('#home')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group flex flex-col items-center gap-1.5 focus:outline-none cursor-pointer select-none"
+              className="group flex flex-col items-center gap-2 p-2 focus:outline-none cursor-pointer select-none"
               aria-label="Go back to home page"
             >
               <motion.div
@@ -62,7 +62,7 @@ export default function App() {
                   ease: 'easeInOut',
                 }}
                 className="
-                  w-7 h-7 sm:w-8 sm:h-8
+                  w-8 h-8 sm:w-9 sm:h-9
                   rounded-full
                   border border-hairline group-hover:border-gold/70
                   flex items-center justify-center
@@ -73,8 +73,8 @@ export default function App() {
                 "
               >
                 <svg
-                  width="13"
-                  height="13"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -87,7 +87,7 @@ export default function App() {
                   <path d="M17 14l-5-5-5 5" />
                 </svg>
               </motion.div>
-              <span className="text-[8px] sm:text-[9px] font-medium tracking-[0.25em] uppercase text-slate/80 group-hover:text-gold transition-colors duration-200">
+              <span className="text-[9px] sm:text-[10px] font-medium tracking-[0.25em] uppercase text-slate/80 group-hover:text-gold transition-colors duration-200">
                 Back to Top
               </span>
             </button>
@@ -95,20 +95,20 @@ export default function App() {
 
           {/* Copyright & Social links */}
           <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left pt-4 border-t border-hairline/40">
-            <p className="text-[10px] tracking-widest uppercase text-slate">
+            <p className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate">
               © {new Date().getFullYear()} Nivethitha Ramesh
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
               <a href="https://www.linkedin.com/in/nivethitha-ramesh/" target="_blank" rel="noopener noreferrer"
-                className="text-[10px] tracking-widest uppercase text-slate hover:text-gold transition-colors">
+                className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
                 LinkedIn
               </a>
               <a href="https://github.com/Nivethitha-1131" target="_blank" rel="noopener noreferrer"
-                className="text-[10px] tracking-widest uppercase text-slate hover:text-gold transition-colors">
+                className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
                 GitHub
               </a>
               <a href="https://leetcode.com/u/Nivethitha_R/" target="_blank" rel="noopener noreferrer"
-                className="text-[10px] tracking-widest uppercase text-slate hover:text-gold transition-colors">
+                className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
                 LeetCode
               </a>
             </div>
