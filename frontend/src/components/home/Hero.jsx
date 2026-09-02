@@ -76,7 +76,7 @@ function CountUp({ target, suffix, delay = 0, duration = 900, started, reduced }
 /* ── Arrow icon ─────────────────────────────────────────────── */
 function ArrowRightIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <line x1="5" y1="12" x2="19" y2="12" />
       <polyline points="12 5 19 12 12 19" />
@@ -102,30 +102,30 @@ export default function Hero({ onContactOpen }) {
     <section
       id="home"
       aria-label="Hero — Nivethitha Ramesh"
-      className="relative w-full overflow-hidden bg-background min-h-[560px] sm:min-h-[620px] h-[100dvh]"
+      className="relative w-full overflow-hidden bg-background min-h-[600px] sm:min-h-[640px] h-[100dvh]"
     >
       {/* ── Layer 0 — Radial atmospheric glow ── */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div
           className="absolute rounded-full bg-burgundy"
           style={{
-            top: '30%', left: '50%',
+            top: '32%', left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 'clamp(280px, 70vw, 900px)',
-            height: 'clamp(240px, 55vh, 600px)',
+            width: 'clamp(320px, 75vw, 950px)',
+            height: 'clamp(280px, 60vh, 650px)',
             filter: 'blur(120px)',
-            opacity: 0.18,
+            opacity: 0.22,
           }}
         />
         <div
           className="absolute rounded-full bg-gold"
           style={{
-            top: '25%', left: '25%',
+            top: '26%', left: '26%',
             transform: 'translate(-50%, -50%)',
-            width: 'clamp(160px, 30vw, 400px)',
-            height: 'clamp(120px, 25vh, 320px)',
+            width: 'clamp(180px, 34vw, 420px)',
+            height: 'clamp(140px, 28vh, 340px)',
             filter: 'blur(90px)',
-            opacity: 0.07,
+            opacity: 0.09,
           }}
         />
       </div>
@@ -133,11 +133,11 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1a — PORTFOLIO wordmark SOLID (behind portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-3 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '46%',
+          top: '48%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(26px, 10.5vw, 190px)',
+          fontSize: 'clamp(46px, 14vw, 210px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: '#7B1829',
@@ -166,15 +166,15 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1b — PORTFOLIO wordmark OUTLINE (above portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-3 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '46%',
+          top: '48%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(26px, 10.5vw, 190px)',
+          fontSize: 'clamp(46px, 14vw, 210px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: 'transparent',
-          WebkitTextStroke: 'clamp(0.8px, 0.15vw, 1.5px) rgba(180,30,55,0.75)',
+          WebkitTextStroke: 'clamp(1px, 0.16vw, 1.8px) rgba(180,30,55,0.75)',
         }}
       >
         <motion.div
@@ -196,31 +196,31 @@ export default function Hero({ onContactOpen }) {
         </motion.div>
       </div>
 
-      {/* ── Layer 2 — Portrait ── */}
+      {/* ── Layer 2 — Portrait (Noticeably bigger & more impactful) ── */}
       <motion.div
         className="pointer-events-none absolute z-[10] flex items-center justify-center"
         style={{
-          top: '46%',
+          top: '48%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          height: 'clamp(210px, 44vh, 560px)',
+          height: 'clamp(340px, 58vh, 660px)',
           width: 'auto',
           WebkitMaskImage: `
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.6) 18%,
-              rgba(0,0,0,0.9) 32%,
-              black 50%,
-              black 80%,
-              rgba(0,0,0,0.85) 92%,
+              rgba(0,0,0,0.55) 12%,
+              rgba(0,0,0,0.92) 22%,
+              black 38%,
+              black 84%,
+              rgba(0,0,0,0.9) 93%,
               transparent 100%
             ),
             linear-gradient(
               to right,
               transparent 0%,
-              black 8%,
-              black 92%,
+              black 6%,
+              black 94%,
               transparent 100%
             )
           `,
@@ -229,25 +229,25 @@ export default function Hero({ onContactOpen }) {
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.6) 18%,
-              rgba(0,0,0,0.9) 32%,
-              black 50%,
-              black 80%,
-              rgba(0,0,0,0.85) 92%,
+              rgba(0,0,0,0.55) 12%,
+              rgba(0,0,0,0.92) 22%,
+              black 38%,
+              black 84%,
+              rgba(0,0,0,0.9) 93%,
               transparent 100%
             ),
             linear-gradient(
               to right,
               transparent 0%,
-              black 8%,
-              black 92%,
+              black 6%,
+              black 94%,
               transparent 100%
             )
           `,
           maskComposite: 'intersect',
         }}
-        initial={shouldReduceMotion ? { opacity: 0.82 } : { opacity: 0 }}
-        animate={{ opacity: 0.82 }}
+        initial={shouldReduceMotion ? { opacity: 0.88 } : { opacity: 0 }}
+        animate={{ opacity: 0.88 }}
         transition={{
           duration: 1.5,
           delay: 0.1,
@@ -257,7 +257,7 @@ export default function Hero({ onContactOpen }) {
         <img
           src="/assets/portrait.png"
           alt="Nivethitha Ramesh"
-          className="h-full w-auto object-contain max-w-[85vw]"
+          className="h-full w-auto object-contain max-w-[94vw] sm:max-w-[85vw]"
           draggable="false"
         />
       </motion.div>
@@ -270,12 +270,12 @@ export default function Hero({ onContactOpen }) {
           className="absolute left-4 sm:left-6 lg:left-12 pointer-events-auto"
           style={{
             top: 'clamp(68px, 10vh, 96px)',
-            maxWidth: 'clamp(230px, 40vw, 380px)',
+            maxWidth: 'clamp(250px, 42vw, 400px)',
           }}
         >
           <motion.h1
             className="font-serif text-cream font-semibold leading-tight mb-1.5 sm:mb-2"
-            style={{ fontSize: 'clamp(1.6rem, 4vw, 3.4rem)' }}
+            style={{ fontSize: 'clamp(1.85rem, 5.2vw, 3.6rem)' }}
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.3, ease: EASE_OUT }}
@@ -284,7 +284,7 @@ export default function Hero({ onContactOpen }) {
           </motion.h1>
 
           <p
-            className="flex flex-wrap text-[8px] sm:text-[10px] tracking-[0.16em] sm:tracking-[0.3em] uppercase text-gold font-medium"
+            className="flex flex-wrap text-[9px] sm:text-[10.5px] tracking-[0.18em] sm:tracking-[0.3em] uppercase text-gold font-medium"
             aria-label={SUBTITLE}
           >
             {SUBTITLE.split('').map((char, idx) => (
@@ -310,7 +310,7 @@ export default function Hero({ onContactOpen }) {
 
           {/* Social icons — mobile/tablet only (LeftSidebar covers lg+) */}
           <motion.div
-            className="flex items-center gap-4 sm:gap-5 mt-3 sm:mt-4 lg:hidden"
+            className="flex items-center gap-4 sm:gap-5 mt-3.5 sm:mt-4 lg:hidden"
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.85, ease: EASE_OUT }}
@@ -322,7 +322,7 @@ export default function Hero({ onContactOpen }) {
               aria-label="LinkedIn"
               className="p-1.5 -m-1.5 text-slate hover:text-gold transition-colors duration-200"
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                 <rect x="2" y="9" width="4" height="12" />
@@ -336,7 +336,7 @@ export default function Hero({ onContactOpen }) {
               aria-label="GitHub"
               className="p-1.5 -m-1.5 text-slate hover:text-gold transition-colors duration-200"
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
               </svg>
@@ -348,7 +348,7 @@ export default function Hero({ onContactOpen }) {
               aria-label="LeetCode"
               className="p-1.5 -m-1.5 text-slate hover:text-gold transition-colors duration-200"
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
               </svg>
             </a>
@@ -357,7 +357,7 @@ export default function Hero({ onContactOpen }) {
               aria-label="Email"
               className="p-1.5 -m-1.5 text-slate hover:text-gold transition-colors duration-200"
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="m22 7-10 7L2 7" />
@@ -371,15 +371,15 @@ export default function Hero({ onContactOpen }) {
           className="absolute left-4 sm:left-6 lg:left-12 pointer-events-auto"
           style={{
             bottom: 'clamp(20px, 4vh, 48px)',
-            maxWidth: 'clamp(220px, 32vw, 340px)',
+            maxWidth: 'clamp(250px, 36vw, 380px)',
           }}
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 1.5, ease: EASE_OUT }}
         >
           <p
-            className="text-cream font-light leading-relaxed mb-3.5 sm:mb-5"
-            style={{ fontSize: 'clamp(0.8rem, 1.15vw, 1.05rem)' }}
+            className="text-cream font-light leading-relaxed mb-4 sm:mb-5"
+            style={{ fontSize: 'clamp(0.9rem, 1.3vw, 1.1rem)' }}
           >
             I turn ideas into intelligent systems using{' '}
             <span className="text-gold font-medium">data</span>,{' '}
@@ -397,11 +397,12 @@ export default function Hero({ onContactOpen }) {
               className="
                 inline-flex items-center gap-2
                 bg-cream text-background
-                text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase
-                px-4 py-3 sm:px-5 sm:py-3.5
+                text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase
+                px-5 py-3.5 sm:px-6 sm:py-4
                 hover:bg-gold
                 transition-colors duration-250
                 cursor-pointer select-none
+                shadow-[0_4px_20px_rgba(0,0,0,0.3)]
               "
             >
               Explore My Work
