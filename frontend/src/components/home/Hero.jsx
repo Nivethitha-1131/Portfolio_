@@ -202,7 +202,7 @@ export default function Hero({ onContactOpen }) {
         <motion.div
           className="relative flex items-center justify-center"
           style={{
-            marginTop: 'clamp(26px, 4.8vh, 52px)',
+            marginTop: 'clamp(12px, 2.2vh, 24px)',
             height: 'clamp(270px, 48vh, 550px)',
             width: 'auto',
             WebkitMaskImage: `
