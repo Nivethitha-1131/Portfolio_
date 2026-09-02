@@ -326,7 +326,7 @@ export default function Hero({ onContactOpen }) {
         <motion.div
           className="
             absolute left-5 sm:left-8 md:left-32 lg:left-44 xl:left-48 pointer-events-auto
-            bottom-[74px] md:bottom-[clamp(20px,4vh,48px)]
+            bottom-[clamp(22px,4vh,48px)]
           "
           style={{
             maxWidth: 'clamp(240px, 32vw, 360px)',
@@ -369,34 +369,49 @@ export default function Hero({ onContactOpen }) {
           </div>
         </motion.div>
 
-        {/* MOBILE ACHIEVEMENTS BANNER (< md screens) */}
-        <div
+        {/* MOBILE CREATIVE ACHIEVEMENTS EMBLEM (< md screens only) */}
+        <motion.div
           className="
-            md:hidden absolute inset-x-2.5 bottom-2.5 z-30 pointer-events-auto
-            bg-surface/92 backdrop-blur-md border border-hairline rounded-sm
-            px-2 py-2 shadow-xl
+            md:hidden absolute right-3.5 sm:right-6 z-30 pointer-events-auto
+            top-[clamp(195px,29vh,245px)]
+            w-[126px] sm:w-[142px]
+            bg-surface/85 backdrop-blur-xl border border-gold/35 rounded-xl
+            p-2.5 sm:p-3 shadow-[0_8px_32px_rgba(0,0,0,0.55)]
           "
+          initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 1.1, ease: EASE_OUT }}
         >
-          <div className="grid grid-cols-4 items-center divide-x divide-hairline">
+          {/* Header with glowing live pulse */}
+          <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-hairline/60">
+            <span className="text-[7.5px] font-mono tracking-[0.22em] uppercase text-gold font-semibold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shadow-[0_0_6px_rgba(201,164,92,0.8)]" />
+              Impact
+            </span>
+            <span className="text-[7px] font-mono text-slate tracking-wider">2024–26</span>
+          </div>
+
+          {/* 2x2 Clean Minimalist Stat Matrix */}
+          <div className="grid grid-cols-2 gap-x-2 gap-y-2">
             {STATS.map((stat, i) => (
-              <div key={stat.line1 + stat.line2} className="px-1 text-center">
-                <div className="font-serif text-gold font-semibold text-[13px] leading-none tabular-nums">
+              <div key={stat.line1 + stat.line2} className="flex flex-col">
+                <div className="font-serif text-gold font-bold text-[14px] leading-none tabular-nums">
                   <CountUp
                     target={stat.target}
                     suffix={stat.suffix}
-                    delay={i * 120}
+                    delay={i * 140}
                     duration={900}
                     started={statsStarted}
                     reduced={shouldReduceMotion}
                   />
                 </div>
-                <div className="text-[7px] text-slate mt-1 leading-tight tracking-tight">
-                  {stat.line1}<br />{stat.line2}
+                <div className="text-[7.5px] text-slate/90 mt-0.5 leading-tight font-medium">
+                  {stat.line1} {stat.line2}
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* BOTTOM-RIGHT: Stat counters (md+ screens) */}
         <div
@@ -443,14 +458,11 @@ export default function Hero({ onContactOpen }) {
           ))}
         </div>
 
-        {/* BOTTOM SCROLL INDICATOR:
-            On mobile (< md): Positioned bottom-[74px] right-3.5 (aligns with Explore button)
-            On desktop (md+): Centered between bio and stats
-        */}
+        {/* BOTTOM SCROLL INDICATOR */}
         <motion.div
           className="
             absolute pointer-events-auto cursor-pointer
-            right-3.5 bottom-[74px] md:right-auto md:bottom-[clamp(18px,3.2vh,40px)] md:left-1/2 md:-translate-x-1/2
+            right-4 bottom-[clamp(22px,4vh,48px)] md:right-auto md:bottom-[clamp(18px,3.2vh,40px)] md:left-1/2 md:-translate-x-1/2
             flex flex-col items-center
           "
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
