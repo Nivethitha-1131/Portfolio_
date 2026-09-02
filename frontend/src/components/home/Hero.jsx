@@ -133,13 +133,13 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1a — PORTFOLIO wordmark SOLID (behind portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-1 overflow-hidden"
         style={{
-          top: '48%',
+          top: '47%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(46px, 14vw, 210px)',
+          fontSize: 'clamp(58px, 18.5vw, 260px)',
           fontWeight: 900,
-          letterSpacing: '-0.015em',
+          letterSpacing: '-0.025em',
           color: '#7B1829',
           opacity: 0.95,
         }}
@@ -166,15 +166,15 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1b — PORTFOLIO wordmark OUTLINE (above portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-1 overflow-hidden"
         style={{
-          top: '48%',
+          top: '47%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(46px, 14vw, 210px)',
+          fontSize: 'clamp(58px, 18.5vw, 260px)',
           fontWeight: 900,
-          letterSpacing: '-0.015em',
+          letterSpacing: '-0.025em',
           color: 'transparent',
-          WebkitTextStroke: 'clamp(1px, 0.16vw, 1.8px) rgba(180,30,55,0.75)',
+          WebkitTextStroke: 'clamp(1.2px, 0.22vw, 2.2px) rgba(180,30,55,0.85)',
         }}
       >
         <motion.div
@@ -196,31 +196,31 @@ export default function Hero({ onContactOpen }) {
         </motion.div>
       </div>
 
-      {/* ── Layer 2 — Portrait (Noticeably bigger & more impactful) ── */}
+      {/* ── Layer 2 — Portrait ── */}
       <motion.div
         className="pointer-events-none absolute z-[10] flex items-center justify-center"
         style={{
-          top: '48%',
+          top: '47%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          height: 'clamp(340px, 58vh, 660px)',
+          height: 'clamp(270px, 48vh, 550px)',
           width: 'auto',
           WebkitMaskImage: `
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.55) 12%,
-              rgba(0,0,0,0.92) 22%,
-              black 38%,
-              black 84%,
-              rgba(0,0,0,0.9) 93%,
+              rgba(0,0,0,0.6) 18%,
+              rgba(0,0,0,0.9) 32%,
+              black 50%,
+              black 80%,
+              rgba(0,0,0,0.85) 92%,
               transparent 100%
             ),
             linear-gradient(
               to right,
               transparent 0%,
-              black 6%,
-              black 94%,
+              black 8%,
+              black 92%,
               transparent 100%
             )
           `,
@@ -229,25 +229,25 @@ export default function Hero({ onContactOpen }) {
             linear-gradient(
               to top,
               transparent 0%,
-              rgba(0,0,0,0.55) 12%,
-              rgba(0,0,0,0.92) 22%,
-              black 38%,
-              black 84%,
-              rgba(0,0,0,0.9) 93%,
+              rgba(0,0,0,0.6) 18%,
+              rgba(0,0,0,0.9) 32%,
+              black 50%,
+              black 80%,
+              rgba(0,0,0,0.85) 92%,
               transparent 100%
             ),
             linear-gradient(
               to right,
               transparent 0%,
-              black 6%,
-              black 94%,
+              black 8%,
+              black 92%,
               transparent 100%
             )
           `,
           maskComposite: 'intersect',
         }}
-        initial={shouldReduceMotion ? { opacity: 0.88 } : { opacity: 0 }}
-        animate={{ opacity: 0.88 }}
+        initial={shouldReduceMotion ? { opacity: 0.85 } : { opacity: 0 }}
+        animate={{ opacity: 0.85 }}
         transition={{
           duration: 1.5,
           delay: 0.1,
@@ -257,7 +257,7 @@ export default function Hero({ onContactOpen }) {
         <img
           src="/assets/portrait.png"
           alt="Nivethitha Ramesh"
-          className="h-full w-auto object-contain max-w-[94vw] sm:max-w-[85vw]"
+          className="h-full w-auto object-contain max-w-[85vw]"
           draggable="false"
         />
       </motion.div>
