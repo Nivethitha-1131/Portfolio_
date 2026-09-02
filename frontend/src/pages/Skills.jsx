@@ -30,21 +30,23 @@ export default function Skills() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16 mb-4 sm:mb-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16">
         <SectionReveal>
-          <AnimatedHeading
-            label="04 — Skills"
-            heading={"Technical\nCapabilities"}
-          />
-          <p className="text-slate text-xs sm:text-sm font-light max-w-xl -mt-2 sm:-mt-4">
-            A comprehensive, evolving stack of intelligence frameworks, modern languages, and cloud infrastructure engineered for production.
-          </p>
-        </SectionReveal>
-      </div>
+          <div className="mb-4 sm:mb-6">
+            <AnimatedHeading
+              label="04 — Skills"
+              heading={"Technical\nCapabilities"}
+            />
+            <p className="text-slate text-xs sm:text-sm font-light max-w-xl -mt-2 sm:-mt-4">
+              A comprehensive, evolving stack of intelligence frameworks, modern languages, and cloud infrastructure engineered for production.
+            </p>
+          </div>
 
-      {/* ── Continuous Infinite Logo Loop ── */}
-      <div className="relative z-10 w-full overflow-hidden">
-        <LogoLoop />
+          {/* ── Continuous Infinite Logo Loop strictly inside this container ratio ── */}
+          <div className="relative w-full overflow-hidden">
+            <LogoLoop />
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

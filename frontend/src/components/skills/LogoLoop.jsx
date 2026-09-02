@@ -114,9 +114,9 @@ export default function LogoLoop() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden flex flex-col gap-6 sm:gap-8 pt-4 pb-2">
+    <div className="relative w-full overflow-hidden flex flex-col gap-5 sm:gap-6 pt-2 pb-2">
       {/* ── Category Filter Pills ── */}
-      <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2.5 overflow-x-auto no-scrollbar px-4 sm:px-0 py-1">
+      <div className="flex items-center justify-start gap-1.5 sm:gap-2.5 overflow-x-auto no-scrollbar py-1">
         {CATEGORY_TABS.map((tab) => {
           const isSelected = activeTab === tab.id;
           return (
@@ -138,8 +138,8 @@ export default function LogoLoop() {
         })}
       </div>
 
-      {/* ── Infinite Logo Loop Tracks with Edge Fade Vignette ── */}
-      <div className="relative w-full logo-loop-mask pause-on-hover flex flex-col gap-3.5 sm:gap-4.5 overflow-hidden">
+      {/* ── Infinite Logo Loop Tracks with Edge Fade Vignette strictly inside this container ratio ── */}
+      <div className="relative w-full rounded-2xl border border-hairline/70 bg-surface/30 backdrop-blur-sm p-3.5 sm:p-5 md:p-6 logo-loop-mask pause-on-hover flex flex-col gap-3 sm:gap-4 overflow-hidden shadow-inner">
         {/* Track 1: Flows Left */}
         <div className="flex overflow-hidden w-full">
           <div className="animate-marquee-left flex items-center gap-3 sm:gap-4">
