@@ -134,13 +134,13 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1a — PORTFOLIO wordmark SOLID (behind portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-1 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '47%',
+          top: '46%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(58px, 18.5vw, 260px)',
+          fontSize: 'clamp(36px, 12.5vw, 195px)',
           fontWeight: 900,
-          letterSpacing: '-0.025em',
+          letterSpacing: '-0.015em',
           color: '#7B1829',
           opacity: 0.95,
         }}
@@ -167,15 +167,15 @@ export default function Hero({ onContactOpen }) {
       {/* ── Layer 1b — PORTFOLIO wordmark OUTLINE (above portrait) ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-1 overflow-hidden"
+        className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '47%',
+          top: '46%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(58px, 18.5vw, 260px)',
+          fontSize: 'clamp(36px, 12.5vw, 195px)',
           fontWeight: 900,
-          letterSpacing: '-0.025em',
+          letterSpacing: '-0.015em',
           color: 'transparent',
-          WebkitTextStroke: 'clamp(1.2px, 0.22vw, 2.2px) rgba(180,30,55,0.85)',
+          WebkitTextStroke: 'clamp(1px, 0.16vw, 1.6px) rgba(180,30,55,0.75)',
         }}
       >
         <motion.div
