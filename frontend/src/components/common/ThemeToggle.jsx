@@ -1,26 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, animate } from 'framer-motion';
 import { useTheme } from '../../hooks/useTheme';
 
 /**
- * Vintage Pull-Cord Light Switch
+ * Luxury Vintage Pull-Cord Light Switch
  *
- * Real interactive mechanical pull switch:
- * - Click or drag the cord/handle downward with natural stretch and resistance physics.
- * - Tripping threshold (26px) triggers the light ON / OFF state with tactile mechanical bounce.
- * - Smooth elastic snap-back returns the cord and brass weight to its resting position.
- * - Distinct lighting states:
- *     • ON  -> Illuminated radiant sun lamp with warm ambient glow.
- *     • OFF -> Dimmed nocturnal crescent moon with subtle starlight glimmer.
- * - Touch-friendly 44x44px touch-action:none grab area for seamless mobile dragging.
+ * Bespoke Art-Deco / Heirloom Lamp Pull:
+ * - Handcrafted Victorian beaded gold ball-chain that stretches with natural physics.
+ * - Ornate fluted brass pendant finial with stepped collar, filigree waist, specular gloss gleams, and acorn drop.
+ * - Tactile mechanical pull with spring snap-back, recoil bounce, and Web Audio API switch sound.
+ * - Distinct ambient illumination states (Illuminated Sun Lamp vs Nocturnal Crescent Moon).
  */
 
 const PULL_THRESHOLD = 26;
 const MAX_PULL = 46;
-const RESTING_STRING_LENGTH = 24;
+const RESTING_CHAIN_LENGTH = 28;
 
 /**
- * Synthesized tactile switch click sound using Web Audio API (no assets needed).
+ * Synthesized tactile switch click sound using Web Audio API.
  */
 function playSwitchSound(isTurningOn) {
   try {
@@ -61,8 +58,127 @@ function playSwitchSound(isTurningOn) {
     osc2.start(now + 0.006);
     osc2.stop(now + 0.038);
   } catch {
-    // Silently continue if audio context is unavailable or restricted
+    // Silently continue if audio context is unavailable
   }
+}
+
+/**
+ * Ornate Golden Beaded Ball Chain
+ * Renders interconnected 3D metallic beads that stretch naturally.
+ */
+function BeadedChain({ length }) {
+  // Generate bead positions along the dynamic chain length
+  const beadSpacing = 5.2;
+  const beadCount = Math.max(3, Math.floor(length / beadSpacing));
+
+  return (
+    <svg
+      width="10"
+      height={length}
+      viewBox={`0 0 10 ${length}`}
+      className="pointer-events-none overflow-visible"
+      style={{ width: '10px', height: `${length}px` }}
+    >
+      {/* Central linking brass wire */}
+      <line
+        x1="5"
+        y1="0"
+        x2="5"
+        y2={length}
+        stroke="#A07828"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+
+      {/* Shimmering 3D Metallic Beads */}
+      {Array.from({ length: beadCount }).map((_, i) => {
+        const cy = 2 + (i * (length - 4)) / (beadCount - 1 || 1);
+        return (
+          <g key={i}>
+            {/* Bead shadow */}
+            <circle cx="5.3" cy={cy + 0.4} r="1.7" fill="#3D2608" opacity="0.5" />
+            {/* Bead body with gold gradient */}
+            <circle cx="5" cy={cy} r="1.7" fill="url(#pendantBeadGrad)" />
+            {/* Specular gleam highlight */}
+            <circle cx="4.4" cy={cy - 0.5} r="0.55" fill="#FFFFFF" opacity="0.85" />
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+/**
+ * Ornate Victorian Brass Pendant Finial (The Bell Weight)
+ * Hand-sculpted vector art with fluted ridges, filigree collar, and specular highlight.
+ */
+function OrnatePendantFinial() {
+  return (
+    <svg
+      width="22"
+      height="34"
+      viewBox="0 0 22 34"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="pointer-events-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.65)]"
+    >
+      {/* ── Top Hanging Eyelet Ring ── */}
+      <circle cx="11" cy="2.5" r="2.2" stroke="url(#pendantBrassGrad)" strokeWidth="1.2" fill="none" />
+      <circle cx="11" cy="2.5" r="1" fill="#2A1B07" />
+
+      {/* ── Stepped Brass Escutcheon Cap ── */}
+      <rect x="8.5" y="4.5" width="5" height="1.6" rx="0.5" fill="url(#pendantHighlightGrad)" />
+      <rect x="7" y="6" width="8" height="1.8" rx="0.6" fill="url(#pendantBrassGrad)" />
+
+      {/* ── Ornate Upper Fluted Sphere ── */}
+      <circle cx="11" cy="9.8" r="2.6" fill="url(#pendantBeadGrad)" />
+      <circle cx="9.8" cy="8.6" r="0.8" fill="#FFFDF0" opacity="0.85" />
+
+      {/* ── Filigree Waist Ring with Accent Beads ── */}
+      <rect x="6.5" y="12.2" width="9" height="1.8" rx="0.7" fill="url(#pendantHighlightGrad)" />
+      <line x1="7" y1="13.1" x2="15" y2="13.1" stroke="#5A3A0B" strokeWidth="0.5" />
+
+      {/* ── Main Baroque Teardrop Bell Body ── */}
+      <path
+        d="M 8.2 13.8 C 6.5 16.5, 4.2 20.2, 4.2 24.2 C 4.2 29.2, 7.2 31.2, 11 31.2 C 14.8 31.2, 17.8 29.2, 17.8 24.2 C 17.8 20.2, 15.5 16.5, 13.8 13.8 Z"
+        fill="url(#pendantBodyGrad)"
+        stroke="url(#pendantHighlightGrad)"
+        strokeWidth="0.7"
+      />
+
+      {/* Engraved Vertical Rib Fluting (Shadows & Highlights) */}
+      <path
+        d="M 9.2 14.5 C 7.8 17.5, 6.2 21, 6.2 24.5 C 6.2 28.5, 8.5 30.5, 11 30.5"
+        stroke="#5A390C"
+        strokeWidth="0.65"
+        fill="none"
+        opacity="0.7"
+      />
+      <path
+        d="M 12.8 14.5 C 14.2 17.5, 15.8 21, 15.8 24.5 C 15.8 28.5, 13.5 30.5, 11 30.5"
+        stroke="#5A390C"
+        strokeWidth="0.65"
+        fill="none"
+        opacity="0.7"
+      />
+      <line x1="11" y1="14" x2="11" y2="30.8" stroke="url(#pendantHighlightGrad)" strokeWidth="0.8" opacity="0.9" />
+
+      {/* Curving Glassy Specular Highlight on Left Contour */}
+      <path
+        d="M 6.8 17.5 C 5.5 20.5, 5.5 24, 6.2 26.5"
+        stroke="#FFFFFF"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        fill="none"
+        opacity="0.75"
+      />
+
+      {/* ── Bottom Acorn Drop Finial Tip ── */}
+      <circle cx="11" cy="31.8" r="1.6" fill="url(#pendantBeadGrad)" />
+      <circle cx="10.4" cy="31.3" r="0.5" fill="#FFFDF0" opacity="0.9" />
+      <circle cx="11" cy="33.4" r="0.8" fill="#C9A45C" />
+    </svg>
+  );
 }
 
 function GlowingGoldSunIcon() {
@@ -162,9 +278,17 @@ export default function ThemeToggle() {
     [0, PULL_THRESHOLD, MAX_PULL],
     [isLight ? 0.8 : 0.28, 0.95, 1]
   );
-  const stringHeight = useTransform(
+
+  // Dynamic chain length
+  const chainLength = useTransform(
     smoothY,
-    (val) => RESTING_STRING_LENGTH + Math.max(0, val)
+    (val) => RESTING_CHAIN_LENGTH + Math.max(0, val)
+  );
+
+  // Dynamic handle position (resting length + pull offset)
+  const handleY = useTransform(
+    smoothY,
+    (val) => RESTING_CHAIN_LENGTH + val - 2
   );
 
   // Interaction refs
@@ -220,7 +344,7 @@ export default function ThemeToggle() {
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
     } catch {
-      // Ignore if pointer capture fails
+      // Ignore
     }
 
     isDraggingRef.current = true;
@@ -300,15 +424,49 @@ export default function ThemeToggle() {
       onKeyDown={handleKeyDown}
       className="relative flex items-center justify-center select-none outline-none focus:outline-none focus:ring-0 focus-visible:outline-none"
       title="Pull cord downward to switch light"
-      style={{ width: '36px', height: '32px' }}
+      style={{ width: '40px', height: '36px' }}
     >
-      {/* ── SVG Defs for Gradients ── */}
+      {/* ── SVG Defs for Rich Luxury Gradients ── */}
       <svg width="0" height="0" className="absolute">
         <defs>
           <linearGradient id="goldThemeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F5E0A3" />
-            <stop offset="50%" stopColor="#C9A45C" />
+            <stop offset="0%" stopColor="#FFF2C8" />
+            <stop offset="35%" stopColor="#F5E0A3" />
+            <stop offset="70%" stopColor="#C9A45C" />
             <stop offset="100%" stopColor="#8A6625" />
+          </linearGradient>
+
+          {/* Luxury Turned Brass Gradient */}
+          <linearGradient id="pendantBrassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#7A5216" />
+            <stop offset="25%" stopColor="#C9A45C" />
+            <stop offset="50%" stopColor="#FFF5D6" />
+            <stop offset="75%" stopColor="#C9A45C" />
+            <stop offset="100%" stopColor="#5E3D0D" />
+          </linearGradient>
+
+          {/* Baroque Pendant Body 3D Radial Gradient */}
+          <radialGradient id="pendantBodyGrad" cx="36%" cy="30%" r="68%">
+            <stop offset="0%" stopColor="#FFFDF5" />
+            <stop offset="22%" stopColor="#F5DF9E" />
+            <stop offset="55%" stopColor="#C9A45C" />
+            <stop offset="82%" stopColor="#845A1A" />
+            <stop offset="100%" stopColor="#4A310A" />
+          </radialGradient>
+
+          {/* Specular Bead Gradient */}
+          <radialGradient id="pendantBeadGrad" cx="35%" cy="35%" r="60%">
+            <stop offset="0%" stopColor="#FFFFFF" />
+            <stop offset="30%" stopColor="#F8E5B2" />
+            <stop offset="68%" stopColor="#C9A45C" />
+            <stop offset="100%" stopColor="#6C450E" />
+          </radialGradient>
+
+          {/* Platinum-Gold Highlight Accent */}
+          <linearGradient id="pendantHighlightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFFDF8" />
+            <stop offset="45%" stopColor="#EAD292" />
+            <stop offset="100%" stopColor="#A47B2C" />
           </linearGradient>
         </defs>
       </svg>
@@ -317,14 +475,14 @@ export default function ThemeToggle() {
       <motion.div
         className="absolute rounded-full pointer-events-none transition-colors duration-500"
         style={{
-          width: isLight ? '52px' : '36px',
-          height: isLight ? '52px' : '36px',
+          width: isLight ? '56px' : '38px',
+          height: isLight ? '56px' : '38px',
           scale: glowScale,
           opacity: glowOpacity,
           background: isLight
-            ? 'radial-gradient(circle, rgba(220,175,80,0.7) 0%, rgba(201,164,92,0.3) 45%, rgba(201,164,92,0) 75%)'
-            : 'radial-gradient(circle, rgba(201,164,92,0.45) 0%, rgba(201,164,92,0) 70%)',
-          filter: isLight ? 'blur(6px)' : 'blur(4px)',
+            ? 'radial-gradient(circle, rgba(235,185,85,0.75) 0%, rgba(201,164,92,0.35) 45%, rgba(201,164,92,0) 75%)'
+            : 'radial-gradient(circle, rgba(201,164,92,0.4) 0%, rgba(201,164,92,0) 70%)',
+          filter: isLight ? 'blur(7px)' : 'blur(4px)',
         }}
       />
 
@@ -334,7 +492,7 @@ export default function ThemeToggle() {
         style={{ y: lampFlex }}
       >
         {/* ── Moon / Sun Celestial Icon (Fixed 24x24) ── */}
-        <div className="relative w-6 h-6 flex items-center justify-center text-gold drop-shadow-[0_2px_10px_rgba(201,164,92,0.4)]">
+        <div className="relative w-6 h-6 flex items-center justify-center text-gold drop-shadow-[0_2px_12px_rgba(201,164,92,0.45)]">
           <AnimatePresence mode="wait" initial={false}>
             {isLight ? (
               /* Glowing Gold Pointed Sun Lamp (Light ON) */
@@ -366,59 +524,59 @@ export default function ThemeToggle() {
                 />
                 <path
                   fill="#FFF4D0"
-                  opacity="0.35"
+                  opacity="0.4"
                   d="M19 12.79A7 7 0 1 1 11.21 5 5.5 5.5 0 0 0 19 12.79z"
                 />
+                {/* Dainty celestial engraved star on moon */}
+                <circle cx="9.5" cy="11.5" r="0.6" fill="#FFFDF5" opacity="0.8" />
               </motion.svg>
             )}
           </AnimatePresence>
         </div>
 
-        {/* ── Interactive Hanging Pull String (Anchored at base of fixture) ── */}
+        {/* ── Ornate Hanging Beaded Chain & Luxury Pendant ── */}
         <div className="absolute top-full left-1/2 -translate-x-1/2 flex flex-col items-center">
-          {/* Dynamic Stretchy Cord */}
-          <motion.div
-            className="w-[1.5px] bg-gradient-to-b from-gold via-[#F5E0A3] to-gold shadow-[0_0_4px_rgba(201,164,92,0.5)] origin-top pointer-events-none"
-            style={{ height: stringHeight }}
-          />
+          {/* Decorative brass bracket link connecting moon to chain */}
+          <div className="w-1.5 h-1 -mt-0.5 rounded-sm bg-gradient-to-b from-[#C9A45C] to-[#8A6020] shadow-[0_1px_3px_rgba(0,0,0,0.4)] shrink-0" />
 
-          {/* ── Pull Handle Assembly & Touch Grab Area ── */}
+          {/* Dynamic Stretchy Beaded Ball Chain */}
           <motion.div
-            style={{ y: smoothY }}
+            className="flex flex-col items-center origin-top pointer-events-none"
+            style={{ height: chainLength }}
+          >
+            <motion.div
+              style={{
+                height: chainLength,
+              }}
+            >
+              {/* Dynamic SVG beaded chain rendered via framer-motion subscriber */}
+              <ChainRenderer chainLength={chainLength} />
+            </motion.div>
+          </motion.div>
+
+          {/* ── Ornate Pendant Handle & Touch Grab Area ── */}
+          <motion.div
+            style={{ y: handleY }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
             className="
-              absolute top-0 -translate-y-1/2 flex flex-col items-center justify-center
+              absolute top-0 -translate-x-1/2 left-1/2 flex flex-col items-center justify-center
               cursor-grab active:cursor-grabbing
               touch-none select-none
-              w-12 h-12
+              w-12 h-12 -mt-3
               group
             "
-            aria-label="Pull cord handle"
+            aria-label="Pull cord ornate handle"
           >
-            {/* Visual Brass Weight Handle */}
-            <div
-              className="flex flex-col items-center pointer-events-none transition-transform duration-150 group-hover:scale-110 group-active:scale-105"
-              style={{
-                marginTop: `${RESTING_STRING_LENGTH}px`,
-              }}
-            >
-              {/* Top tiny brass ring connecting to cord */}
-              <div className="w-1.5 h-1.5 rounded-full bg-gold shadow-sm border border-[#7A5B1E]/50" />
-
-              {/* Main turned brass pendant weight */}
+            {/* Visual Ornate Brass Finial with Hover Micro-Glow */}
+            <div className="relative flex items-center justify-center transition-transform duration-200 group-hover:scale-115 group-active:scale-105">
+              {/* Ambient glimmer behind finial */}
               <div
-                className="w-3.5 h-4.5 rounded-b-full rounded-t-sm shadow-[0_2px_8px_rgba(0,0,0,0.5)] relative overflow-hidden"
-                style={{
-                  background: 'radial-gradient(circle at 35% 35%, #FFF0C2 0%, #C9A45C 50%, #7A5B1E 100%)',
-                  border: '0.5px solid rgba(255,240,194,0.6)',
-                }}
-              >
-                {/* Specular highlight gleam */}
-                <div className="absolute top-0.5 left-0.5 w-1 h-1.5 rounded-full bg-white/75 blur-[0.4px]" />
-              </div>
+                className="absolute inset-0 rounded-full blur-[5px] bg-gold/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              />
+              <OrnatePendantFinial />
             </div>
           </motion.div>
         </div>
@@ -426,4 +584,20 @@ export default function ThemeToggle() {
     </div>
   );
 }
+
+/**
+ * Animated subscriber component that re-renders the beaded chain smoothly as chainLength changes
+ */
+function ChainRenderer({ chainLength }) {
+  const [len, setLen] = useState(RESTING_CHAIN_LENGTH);
+
+  useEffect(() => {
+    return chainLength.on('change', (latest) => {
+      setLen(Math.round(latest));
+    });
+  }, [chainLength]);
+
+  return <BeadedChain length={len} />;
+}
+
 
