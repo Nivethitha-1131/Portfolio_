@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
-const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_40tz2rw';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_1gpjlv8';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'ry9RfmbN45i1WCNzn';
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const OVERLAY_VARIANTS = {
   hidden: { opacity: 0 },
@@ -139,13 +139,20 @@ export default function ContactModal({ isOpen, onClose }) {
         if (!data.success) {
           throw new Error(data.message || 'Submission failed');
         }
-      } else {
+      } else if (API_URL && API_URL !== 'http://localhost:3001') {
         const res = await fetch(`${API_URL}/api/contact`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(form),
         });
         if (!res.ok) throw new Error('Server error');
+      } else {
+        // Fallback: direct email link
+        window.location.href = `mailto:nivethitha1131@gmail.com?subject=${encodeURIComponent(
+          `Portfolio Inquiry from ${form.name}`
+        )}&body=${encodeURIComponent(
+          `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
+        )}`;
       }
 
       setStatus('success');
@@ -295,8 +302,15 @@ export default function ContactModal({ isOpen, onClose }) {
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-red-400/80 text-xs tracking-wide">
-                    Something went wrong. Please try again or email me directly.
+                  <p className="text-red-400/90 text-xs tracking-wide">
+                    Something went wrong. Please try again or{' '}
+                    <a
+                      href="mailto:nivethitha1131@gmail.com"
+                      className="underline text-gold hover:text-cream"
+                    >
+                      email me directly
+                    </a>
+                    .
                   </p>
                 )}
 
