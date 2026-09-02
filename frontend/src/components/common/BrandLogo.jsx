@@ -92,13 +92,13 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
           </motion.span>
         </div>
 
-        {/* ── City & Live Clock (Always Displayed) ── */}
-        <div className="flex items-center gap-2 sm:gap-2.5 whitespace-nowrap text-[9px] sm:text-[10px] tracking-wider uppercase">
+        {/* ── City & Live Clock (Visible on all screen sizes) ── */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 whitespace-nowrap text-[8.5px] sm:text-[10px] tracking-wider uppercase">
           {/* City */}
-          <span className="hidden sm:inline font-medium text-slate group-hover:text-cream transition-colors duration-200">
+          <span className="font-medium text-slate group-hover:text-cream transition-colors duration-200">
             Coimbatore
           </span>
-          <span className="hidden sm:inline w-1 h-1 rounded-full bg-gold/40 group-hover:bg-gold transition-colors duration-200" />
+          <span className="w-1 h-1 rounded-full bg-gold/40 group-hover:bg-gold transition-colors duration-200" />
 
           {/* Live Clock */}
           <span className="font-mono text-cream/90 font-medium tabular-nums group-hover:text-gold transition-colors duration-200">

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import BrandLogo from './BrandLogo';
+import { SocialLinksRow, RotatingWordHorizontal } from './LeftSidebar';
 
 const NAV_LINKS = [
   { label: 'Home',       href: '#home',       id: 'home' },
@@ -254,6 +255,12 @@ export default function Navbar({ onContactOpen }) {
                   Let's Talk
                   <ArrowNEIcon />
                 </button>
+              </div>
+
+              {/* Mobile Drawer Footer: Rotating Positive Word & Social Links */}
+              <div className="mt-4 pt-3.5 border-t border-hairline/60 flex items-center justify-between flex-wrap gap-2">
+                <RotatingWordHorizontal />
+                <SocialLinksRow className="flex items-center gap-3" />
               </div>
             </motion.div>
           </>

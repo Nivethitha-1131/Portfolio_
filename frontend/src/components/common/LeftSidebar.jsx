@@ -41,7 +41,7 @@ function MailIcon() {
 }
 
 /* ── Meaningful positive life words that continuously rotate ── */
-const POSITIVE_WORDS = [
+export const POSITIVE_WORDS = [
   'LIFE',
   'PERSPECTIVE',
   'HUMBLE',
@@ -59,7 +59,7 @@ const POSITIVE_WORDS = [
 /**
  * RotatingWord — Smooth vertical fade & slide transition between positive words.
  */
-function RotatingWord() {
+export function RotatingWord() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -87,6 +87,88 @@ function RotatingWord() {
           {POSITIVE_WORDS[index]}
         </motion.span>
       </AnimatePresence>
+    </div>
+  );
+}
+
+/**
+ * RotatingWordHorizontal — Smooth horizontal transition for mobile drawers and footers.
+ */
+export function RotatingWordHorizontal() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % POSITIVE_WORDS.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="inline-flex items-center gap-2">
+      <motion.div
+        className="w-1.5 h-1.5 rounded-full bg-gold shrink-0"
+        animate={{ scale: [1, 1.35, 1], opacity: [0.75, 1, 0.75] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <div className="h-5 flex items-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={POSITIVE_WORDS[index]}
+            initial={{ opacity: 0, y: 6, filter: 'blur(2px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -6, filter: 'blur(2px)' }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[9px] font-medium tracking-[0.25em] uppercase text-slate/90 select-none"
+          >
+            {POSITIVE_WORDS[index]}
+          </motion.span>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * SocialLinksRow — Reusable horizontal row of social icons for mobile and footer.
+ */
+export function SocialLinksRow({ className = 'flex items-center gap-4' }) {
+  return (
+    <div className={className}>
+      <a
+        href="https://www.linkedin.com/in/nivethitha-ramesh/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+      >
+        <LinkedInIcon />
+      </a>
+      <a
+        href="https://github.com/Nivethitha-1131"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+      >
+        <GitHubIcon />
+      </a>
+      <a
+        href="https://leetcode.com/u/Nivethitha_R/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LeetCode"
+        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+      >
+        <LeetCodeIcon />
+      </a>
+      <a
+        href="mailto:nivethitha1131@gmail.com"
+        aria-label="Email"
+        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+      >
+        <MailIcon />
+      </a>
     </div>
   );
 }

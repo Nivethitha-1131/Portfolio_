@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import GrainOverlay from './components/common/GrainOverlay';
 import Navbar from './components/common/Navbar';
-import LeftSidebar from './components/common/LeftSidebar';
+import LeftSidebar, { RotatingWordHorizontal } from './components/common/LeftSidebar';
 import ContactModal from './components/common/ContactModal';
 import Home from './pages/Home';
 import Journey from './pages/Journey';
@@ -93,12 +93,18 @@ export default function App() {
             </button>
           </div>
 
-          {/* Copyright & Social links */}
-          <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left pt-4 border-t border-hairline/40">
+          {/* Copyright, Life Perspective & Social links */}
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-center sm:text-left pt-4 border-t border-hairline/40">
             <p className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate">
               © {new Date().getFullYear()} Nivethitha Ramesh
             </p>
-            <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+
+            {/* Rotating Perspective Word */}
+            <div className="flex items-center justify-center">
+              <RotatingWordHorizontal />
+            </div>
+
+            <div className="flex items-center gap-3 sm:gap-5 flex-wrap justify-center">
               <a href="https://www.linkedin.com/in/nivethitha-ramesh/" target="_blank" rel="noopener noreferrer"
                 className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
                 LinkedIn
@@ -110,6 +116,10 @@ export default function App() {
               <a href="https://leetcode.com/u/Nivethitha_R/" target="_blank" rel="noopener noreferrer"
                 className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
                 LeetCode
+              </a>
+              <a href="mailto:nivethitha1131@gmail.com"
+                className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate hover:text-gold transition-colors p-1">
+                Email
               </a>
             </div>
           </div>
