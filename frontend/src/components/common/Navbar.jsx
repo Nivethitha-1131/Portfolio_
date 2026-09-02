@@ -5,10 +5,11 @@ import BrandLogo from './BrandLogo';
 import { SocialLinksRow, RotatingWordHorizontal } from './LeftSidebar';
 
 const NAV_LINKS = [
-  { label: 'Home',       href: '#home',       id: 'home' },
-  { label: 'Journey',    href: '#journey',    id: 'journey' },
-  { label: 'Innovation', href: '#innovation', id: 'innovation' },
-  { label: 'Skills',     href: '#skills',     id: 'skills' },
+  { label: 'Home',         href: '#home',         id: 'home' },
+  { label: 'Journey',      href: '#journey',      id: 'journey' },
+  { label: 'Innovation',   href: '#innovation',   id: 'innovation' },
+  { label: 'Skills',       href: '#skills',       id: 'skills' },
+  { label: 'Achievements', href: '#achievements', id: 'achievements' },
 ];
 
 function ArrowNEIcon() {

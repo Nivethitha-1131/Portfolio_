@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Journey from './pages/Journey';
 import Innovation from './pages/Innovation';
 import Skills from './pages/Skills';
+import Achievements from './pages/Achievements';
 
 /**
  * App — root component.
@@ -38,6 +39,7 @@ export default function App() {
         <Journey />
         <Innovation />
         <Skills />
+        <Achievements />
       </main>
 
       {/* Footer */}
