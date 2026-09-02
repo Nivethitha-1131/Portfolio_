@@ -105,13 +105,13 @@ export function RotatingWordHorizontal() {
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-2">
+    <div className="inline-flex items-center gap-1.5 shrink-0 flex-nowrap whitespace-nowrap">
       <motion.div
         className="w-1.5 h-1.5 rounded-full bg-gold shrink-0"
         animate={{ scale: [1, 1.35, 1], opacity: [0.75, 1, 0.75] }}
         transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <div className="h-5 flex items-center overflow-hidden">
+      <div className="h-5 flex items-center overflow-hidden shrink-0">
         <AnimatePresence mode="wait">
           <motion.span
             key={POSITIVE_WORDS[index]}
@@ -119,7 +119,7 @@ export function RotatingWordHorizontal() {
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, y: -6, filter: 'blur(2px)' }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[9px] font-medium tracking-[0.25em] uppercase text-slate/90 select-none"
+            className="text-[8.5px] sm:text-[9px] font-medium tracking-[0.2em] sm:tracking-[0.25em] uppercase text-slate/90 select-none whitespace-nowrap"
           >
             {POSITIVE_WORDS[index]}
           </motion.span>
@@ -132,7 +132,7 @@ export function RotatingWordHorizontal() {
 /**
  * SocialLinksRow — Reusable horizontal row of social icons for mobile and footer.
  */
-export function SocialLinksRow({ className = 'flex items-center gap-4' }) {
+export function SocialLinksRow({ className = 'flex items-center gap-2.5 shrink-0 flex-nowrap' }) {
   return (
     <div className={className}>
       <a
@@ -140,7 +140,7 @@ export function SocialLinksRow({ className = 'flex items-center gap-4' }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+        className="p-0.5 text-slate hover:text-gold transition-colors duration-200 shrink-0"
       >
         <LinkedInIcon />
       </a>
@@ -149,7 +149,7 @@ export function SocialLinksRow({ className = 'flex items-center gap-4' }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
-        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+        className="p-0.5 text-slate hover:text-gold transition-colors duration-200 shrink-0"
       >
         <GitHubIcon />
       </a>
@@ -158,14 +158,14 @@ export function SocialLinksRow({ className = 'flex items-center gap-4' }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LeetCode"
-        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+        className="p-0.5 text-slate hover:text-gold transition-colors duration-200 shrink-0"
       >
         <LeetCodeIcon />
       </a>
       <a
         href="mailto:nivethitha1131@gmail.com"
         aria-label="Email"
-        className="p-1 text-slate hover:text-gold transition-colors duration-200"
+        className="p-0.5 text-slate hover:text-gold transition-colors duration-200 shrink-0"
       >
         <MailIcon />
       </a>

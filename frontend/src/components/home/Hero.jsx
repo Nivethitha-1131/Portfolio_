@@ -271,7 +271,7 @@ export default function Hero({ onContactOpen }) {
           className="absolute left-6 sm:left-10 md:left-32 lg:left-44 xl:left-48 pointer-events-auto"
           style={{
             top: 'clamp(80px, 12vh, 112px)',
-            maxWidth: 'clamp(240px, 34vw, 380px)',
+            maxWidth: 'clamp(280px, 85vw, 420px)',
           }}
         >
           <motion.h1
@@ -309,15 +309,15 @@ export default function Hero({ onContactOpen }) {
             ))}
           </p>
 
-          {/* Social icons & Life Perspective — mobile/tablet only (LeftSidebar covers lg+) */}
+          {/* Social icons & Life Perspective — mobile/tablet only (strictly single-line side-by-side) */}
           <motion.div
-            className="flex items-center gap-3 sm:gap-4 mt-3 sm:mt-4 lg:hidden flex-wrap"
+            className="flex items-center gap-2.5 sm:gap-3 mt-2.5 sm:mt-3 lg:hidden flex-nowrap whitespace-nowrap"
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.85, ease: EASE_OUT }}
           >
-            <SocialLinksRow className="flex items-center gap-3" />
-            <span className="w-px h-3.5 bg-hairline" aria-hidden="true" />
+            <SocialLinksRow className="flex items-center gap-2 sm:gap-2.5 shrink-0 flex-nowrap" />
+            <span className="w-px h-3 bg-hairline shrink-0" aria-hidden="true" />
             <RotatingWordHorizontal />
           </motion.div>
         </div>
