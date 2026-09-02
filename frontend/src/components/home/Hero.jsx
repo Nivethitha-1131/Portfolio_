@@ -138,7 +138,7 @@ export default function Hero({ onContactOpen }) {
         style={{
           top: '51%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(36px, 12.5vw, 195px)',
+          fontSize: 'clamp(32px, 11vw, 165px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: '#7B1829',
@@ -171,11 +171,11 @@ export default function Hero({ onContactOpen }) {
         style={{
           top: '51%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(36px, 12.5vw, 195px)',
+          fontSize: 'clamp(32px, 11vw, 165px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: 'transparent',
-          WebkitTextStroke: 'clamp(1px, 0.16vw, 1.6px) rgba(180,30,55,0.75)',
+          WebkitTextStroke: 'clamp(1px, 0.14vw, 1.4px) rgba(180,30,55,0.75)',
         }}
       >
         <motion.div
