@@ -28,8 +28,9 @@ function SpecialGlyph({ type }) {
 
 /**
  * Individual Logo Card in the infinite loop.
+ * - Frameless, free-floating: no box or border around the logo.
  * - If it has a logo: logo is centered on top, name is centered below it.
- * - If it does not have a logo: just the word is displayed, centered and neat.
+ * - If it does not have a logo: just the clean word is displayed alone, centered and neat.
  */
 function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
   const { theme } = useTheme();
@@ -49,29 +50,28 @@ function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
       onMouseLeave={() => onHover(null)}
       className={`
         group relative flex flex-col items-center justify-center
-        min-w-[96px] sm:min-w-[110px] h-[72px] sm:h-[80px] px-3 py-2
-        rounded-xl
-        border transition-all duration-300 select-none cursor-pointer shrink-0
+        min-w-[80px] sm:min-w-[95px] px-3 sm:px-4 py-1.5
+        transition-all duration-300 select-none cursor-pointer shrink-0
         ${
           isHighlighted
-            ? 'bg-surface/90 border-gold shadow-[0_0_24px_rgba(201,164,92,0.35)] scale-105'
+            ? 'scale-110 opacity-100'
             : isDimmed
-            ? 'bg-surface/40 border-hairline/40 opacity-40'
-            : 'bg-surface/75 border-hairline/80 hover:border-gold/70 hover:bg-surface/95 hover:shadow-[0_8px_24px_rgba(201,164,92,0.22)] hover:scale-105'
+            ? 'opacity-30'
+            : 'opacity-85 hover:opacity-100 hover:scale-110'
         }
       `}
     >
       {hasLogo ? (
         <>
-          {/* Centered Logo on top */}
-          <div className="flex items-center justify-center h-6 sm:h-7 mb-1.5 transition-transform duration-200 group-hover:scale-110">
+          {/* Centered Logo on top (No box) */}
+          <div className="flex items-center justify-center h-8 sm:h-9 mb-1.5 transition-transform duration-200 group-hover:scale-110">
             {isSpecial ? (
               <SpecialGlyph type={item.icon} />
             ) : (
               <img
                 src={iconUrl}
                 alt=""
-                className="w-5 h-5 sm:w-6 sm:h-6 object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+                className="w-6 h-6 sm:w-7 sm:h-7 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                 loading="lazy"
                 onError={() => setIconError(true)}
               />
@@ -79,13 +79,13 @@ function LogoCard({ item, isHighlighted, onHover, isDimmed }) {
           </div>
 
           {/* Name below the logo */}
-          <span className="text-[11px] sm:text-xs font-medium text-cream group-hover:text-gold transition-colors duration-200 text-center whitespace-nowrap leading-tight">
+          <span className={`text-[11px] sm:text-xs font-medium transition-colors duration-200 text-center whitespace-nowrap leading-tight ${isHighlighted ? 'text-gold' : 'text-cream/90 group-hover:text-gold'}`}>
             {item.label}
           </span>
         </>
       ) : (
         /* If it does not have a logo, just the word alone, centered & neat */
-        <span className="text-xs sm:text-[13px] font-medium text-cream group-hover:text-gold transition-colors duration-200 text-center whitespace-nowrap leading-tight tracking-wide px-1">
+        <span className={`text-xs sm:text-[13px] font-medium transition-colors duration-200 text-center whitespace-nowrap leading-tight tracking-wide px-1 py-3 ${isHighlighted ? 'text-gold' : 'text-cream/90 group-hover:text-gold'}`}>
           {item.label}
         </span>
       )}
@@ -143,10 +143,10 @@ export default function LogoLoop() {
       </div>
 
       {/* ── Infinite Logo Loop Tracks with Edge Fade Vignette strictly inside this container ratio ── */}
-      <div className="relative w-full rounded-2xl border border-hairline/70 bg-surface/30 backdrop-blur-sm p-3.5 sm:p-5 md:p-6 logo-loop-mask pause-on-hover flex flex-col gap-3 sm:gap-4 overflow-hidden shadow-inner">
+      <div className="relative w-full rounded-2xl border border-hairline/60 bg-surface/25 backdrop-blur-sm p-4 sm:p-6 md:p-7 logo-loop-mask pause-on-hover flex flex-col gap-5 sm:gap-6 overflow-hidden">
         {/* Track 1: Flows Left */}
         <div className="flex overflow-hidden w-full">
-          <div className="animate-marquee-left flex items-center gap-3 sm:gap-4">
+          <div className="animate-marquee-left flex items-center gap-5 sm:gap-8">
             {/* Duplicated for seamless infinite loop */}
             {[...logoLoopTracks[0], ...logoLoopTracks[0]].map((item, idx) => (
               <LogoCard
@@ -162,7 +162,7 @@ export default function LogoLoop() {
 
         {/* Track 2: Flows Right */}
         <div className="flex overflow-hidden w-full">
-          <div className="animate-marquee-right flex items-center gap-3 sm:gap-4">
+          <div className="animate-marquee-right flex items-center gap-5 sm:gap-8">
             {/* Duplicated for seamless infinite loop */}
             {[...logoLoopTracks[1], ...logoLoopTracks[1]].map((item, idx) => (
               <LogoCard
@@ -178,7 +178,7 @@ export default function LogoLoop() {
 
         {/* Track 3: Flows Left */}
         <div className="flex overflow-hidden w-full">
-          <div className="animate-marquee-left flex items-center gap-3 sm:gap-4" style={{ '--marquee-duration': '44s' }}>
+          <div className="animate-marquee-left flex items-center gap-5 sm:gap-8" style={{ '--marquee-duration': '44s' }}>
             {/* Duplicated for seamless infinite loop */}
             {[...logoLoopTracks[2], ...logoLoopTracks[2]].map((item, idx) => (
               <LogoCard
