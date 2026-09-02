@@ -198,85 +198,85 @@ export default function Hero({ onContactOpen }) {
       </div>
 
       {/* ── Layer 2 — Portrait ── */}
-      <motion.div
-        className="pointer-events-none absolute z-[10] flex items-center justify-center"
-        style={{
-          top: '47%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          height: 'clamp(270px, 48vh, 550px)',
-          width: 'auto',
-          WebkitMaskImage: `
-            linear-gradient(
-              to top,
-              transparent 0%,
-              transparent 8%,
-              rgba(0,0,0,0.04) 16%,
-              rgba(0,0,0,0.14) 25%,
-              rgba(0,0,0,0.32) 36%,
-              rgba(0,0,0,0.58) 48%,
-              rgba(0,0,0,0.84) 60%,
-              black 70%,
-              black 82%,
-              rgba(0,0,0,0.8) 93%,
-              transparent 100%
-            ),
-            linear-gradient(
-              to right,
-              transparent 0%,
-              black 8%,
-              black 92%,
-              transparent 100%
-            )
-          `,
-          WebkitMaskComposite: 'destination-in',
-          maskImage: `
-            linear-gradient(
-              to top,
-              transparent 0%,
-              transparent 8%,
-              rgba(0,0,0,0.04) 16%,
-              rgba(0,0,0,0.14) 25%,
-              rgba(0,0,0,0.32) 36%,
-              rgba(0,0,0,0.58) 48%,
-              rgba(0,0,0,0.84) 60%,
-              black 70%,
-              black 82%,
-              rgba(0,0,0,0.8) 93%,
-              transparent 100%
-            ),
-            linear-gradient(
-              to right,
-              transparent 0%,
-              black 8%,
-              black 92%,
-              transparent 100%
-            )
-          `,
-          maskComposite: 'intersect',
-        }}
-        initial={shouldReduceMotion ? { opacity: 0.85 } : { opacity: 0 }}
-        animate={{ opacity: 0.85 }}
-        transition={{
-          duration: 1.5,
-          delay: 0.1,
-          ease: 'easeInOut',
-        }}
-      >
-        <div className="relative h-full w-auto">
-          <img
-            src="/assets/portrait.png"
-            alt="Nivethitha Ramesh"
-            className="h-full w-auto object-contain max-w-[85vw]"
-            draggable="false"
-          />
-          {/* Ethereal bottom dissolve overlay matching theme background */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none"
-          />
-        </div>
-      </motion.div>
+      <div className="pointer-events-none absolute inset-0 z-[10] flex items-center justify-center select-none overflow-hidden px-4">
+        <motion.div
+          className="relative flex items-center justify-center"
+          style={{
+            marginTop: 'clamp(26px, 4.8vh, 52px)',
+            height: 'clamp(270px, 48vh, 550px)',
+            width: 'auto',
+            WebkitMaskImage: `
+              linear-gradient(
+                to top,
+                transparent 0%,
+                transparent 8%,
+                rgba(0,0,0,0.04) 16%,
+                rgba(0,0,0,0.14) 25%,
+                rgba(0,0,0,0.32) 36%,
+                rgba(0,0,0,0.58) 48%,
+                rgba(0,0,0,0.84) 60%,
+                black 70%,
+                black 82%,
+                rgba(0,0,0,0.8) 93%,
+                transparent 100%
+              ),
+              linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+              )
+            `,
+            WebkitMaskComposite: 'destination-in',
+            maskImage: `
+              linear-gradient(
+                to top,
+                transparent 0%,
+                transparent 8%,
+                rgba(0,0,0,0.04) 16%,
+                rgba(0,0,0,0.14) 25%,
+                rgba(0,0,0,0.32) 36%,
+                rgba(0,0,0,0.58) 48%,
+                rgba(0,0,0,0.84) 60%,
+                black 70%,
+                black 82%,
+                rgba(0,0,0,0.8) 93%,
+                transparent 100%
+              ),
+              linear-gradient(
+                to right,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+              )
+            `,
+            maskComposite: 'intersect',
+          }}
+          initial={shouldReduceMotion ? { opacity: 0.85 } : { opacity: 0 }}
+          animate={{ opacity: 0.85 }}
+          transition={{
+            duration: 1.5,
+            delay: 0.1,
+            ease: 'easeInOut',
+          }}
+        >
+          <div className="relative h-full w-auto flex items-center justify-center">
+            <img
+              src="/assets/portrait.png"
+              alt="Nivethitha Ramesh"
+              className="h-full w-auto object-contain max-w-[85vw] mx-auto"
+              draggable="false"
+            />
+            {/* Ethereal bottom dissolve overlay matching theme background */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none"
+            />
+          </div>
+        </motion.div>
+      </div>
 
       {/* ── Layer 3 — Cohesive Ultra-wide & Multi-screen Content Container ── */}
       <div className="relative z-[30] max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-12 pointer-events-none">
