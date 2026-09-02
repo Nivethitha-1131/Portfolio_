@@ -11,6 +11,50 @@ import { motion, useReducedMotion } from 'framer-motion';
  * - Interactive hover reveal: smoothly transitions into 'Scroll to Top ↑'.
  * - Glassmorphic rounded pill styling with ambient gold illumination.
  */
+/**
+ * Creative 'N' Monogram Emblem for Nivethitha Ramesh.
+ * High-fashion serif letterform with rich gold gradient and a delicate celestial sparkle at the apex.
+ */
+function CreativeNMonogram() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="w-3.5 h-3.5 sm:w-4 sm:h-4 overflow-visible"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="monogramGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFF8E0" />
+          <stop offset="35%" stopColor="#F5DF9E" />
+          <stop offset="70%" stopColor="#C9A45C" />
+          <stop offset="100%" stopColor="#8E6520" />
+        </linearGradient>
+      </defs>
+
+      {/* Left upright stem with serifs */}
+      <line x1="4" y1="4.2" x2="7.6" y2="4.2" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="5.8" y1="4.2" x2="5.8" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="4" y1="15.8" x2="7.6" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+
+      {/* Bold high-contrast diagonal stroke */}
+      <line x1="5.8" y1="4.6" x2="14.2" y2="15.4" stroke="url(#monogramGold)" strokeWidth="2.8" strokeLinecap="round" />
+
+      {/* Right hairline upright stem with serifs */}
+      <line x1="12.4" y1="4.2" x2="16" y2="4.2" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="14.2" y1="4.2" x2="14.2" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="12.4" y1="15.8" x2="16" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+
+      {/* Creative celestial four-point diamond sparkle star at apex */}
+      <path
+        d="M 16 1.8 Q 16 3.2 17.4 3.2 Q 16 3.2 16 4.6 Q 16 3.2 14.6 3.2 Q 16 3.2 16 1.8 Z"
+        fill="#FFFDF2"
+      />
+    </svg>
+  );
+}
+
 export default function BrandLogo({ onClick, href = '#home', className = '' }) {
   const [time, setTime] = useState('');
   const [isHovered, setIsHovered] = useState(false);
@@ -77,19 +121,19 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
           transition-all duration-300
         "
       >
-        {/* ── Icon / Star Monogram ── */}
-        <div className="relative flex items-center justify-center w-5 h-5 rounded-full bg-gold/10 text-gold border border-gold/25 group-hover:bg-gold group-hover:text-background transition-colors duration-300 shrink-0">
-          <motion.span
-            className="text-[11px] leading-none"
+        {/* ── Creative 'N' Monogram Emblem ── */}
+        <div className="relative flex items-center justify-center w-5 h-5 sm:w-5.5 sm:h-5.5 rounded-full bg-gradient-to-br from-gold/20 via-gold/10 to-transparent border border-gold/35 group-hover:border-gold group-hover:shadow-[0_0_12px_rgba(201,162,75,0.45)] transition-all duration-300 shrink-0">
+          <motion.div
+            className="flex items-center justify-center"
             animate={
               isHovered && !shouldReduceMotion
-                ? { rotate: 180, scale: 1.15 }
-                : { rotate: 0, scale: 1 }
+                ? { scale: 1.15, rotate: [0, -4, 4, 0] }
+                : { scale: 1, rotate: 0 }
             }
-            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
-            ✦
-          </motion.span>
+            <CreativeNMonogram />
+          </motion.div>
         </div>
 
         {/* ── City & Live Clock (Visible on all screen sizes) ── */}
