@@ -381,7 +381,7 @@ export default function Hero({ onContactOpen }) {
             ))}
           </div>
 
-          <div>
+          <div className="flex items-center gap-2.5 sm:gap-3">
             <a
               href="#innovation"
               onClick={(e) => {
@@ -401,6 +401,47 @@ export default function Hero({ onContactOpen }) {
             >
               Explore My Work
               <ArrowRightIcon />
+            </a>
+
+            {/* Mobile-only: Clean paired Scroll Pill */}
+            <a
+              href="#journey"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#journey')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="
+                md:hidden group inline-flex items-center gap-2
+                px-3 py-2
+                border border-hairline/90 hover:border-gold/60
+                bg-surface/85 backdrop-blur-md rounded-full
+                text-slate hover:text-gold
+                transition-all duration-200 cursor-pointer select-none
+              "
+              aria-label="Scroll down to Journey"
+            >
+              <span className="text-[8.5px] font-mono tracking-[0.2em] uppercase font-medium group-hover:text-gold transition-colors">
+                Scroll
+              </span>
+              <motion.div
+                animate={shouldReduceMotion ? {} : { y: [0, 2.5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-5 h-5 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold"
+              >
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 10l5 5 5-5" />
+                </svg>
+              </motion.div>
             </a>
           </div>
         </motion.div>
@@ -450,12 +491,12 @@ export default function Hero({ onContactOpen }) {
           ))}
         </div>
 
-        {/* BOTTOM SCROLL INDICATOR */}
+        {/* BOTTOM SCROLL INDICATOR (Desktop Only) */}
         <motion.div
           className="
-            absolute pointer-events-auto cursor-pointer
-            right-4 bottom-[clamp(22px,4vh,48px)] md:right-auto md:bottom-[clamp(18px,3.2vh,40px)] md:left-1/2 md:-translate-x-1/2
-            flex flex-col items-center
+            hidden md:flex absolute pointer-events-auto cursor-pointer
+            bottom-[clamp(18px,3.2vh,40px)] left-1/2 -translate-x-1/2
+            flex-col items-center
           "
           initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
