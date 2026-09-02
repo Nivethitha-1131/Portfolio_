@@ -267,14 +267,14 @@ export default function Hero({ onContactOpen }) {
 
         {/* TOP-LEFT: Name + Subtitle */}
         <div
-          className="absolute left-4 sm:left-8 lg:left-24 xl:left-28 pointer-events-auto"
+          className="absolute left-4 sm:left-8 lg:left-36 xl:left-40 pointer-events-auto"
           style={{
-            top: 'clamp(74px, 11vh, 104px)',
+            top: 'clamp(80px, 12vh, 112px)',
             maxWidth: 'clamp(250px, 42vw, 420px)',
           }}
         >
           <motion.h1
-            className="font-serif text-cream font-semibold leading-tight mb-1.5 sm:mb-2"
+            className="font-serif text-cream font-semibold leading-tight mb-2"
             style={{ fontSize: 'clamp(1.85rem, 5.2vw, 3.6rem)' }}
             initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
@@ -368,7 +368,7 @@ export default function Hero({ onContactOpen }) {
 
         {/* BOTTOM-LEFT: Bio + Explore CTA */}
         <motion.div
-          className="absolute left-4 sm:left-8 lg:left-24 xl:left-28 pointer-events-auto"
+          className="absolute left-4 sm:left-8 lg:left-36 xl:left-40 pointer-events-auto"
           style={{
             bottom: 'clamp(20px, 4vh, 48px)',
             maxWidth: 'clamp(250px, 36vw, 380px)',
