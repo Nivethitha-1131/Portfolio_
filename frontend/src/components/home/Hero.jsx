@@ -267,10 +267,10 @@ export default function Hero({ onContactOpen }) {
 
         {/* TOP-LEFT: Name + Subtitle */}
         <div
-          className="absolute left-4 sm:left-6 lg:left-12 pointer-events-auto"
+          className="absolute left-4 sm:left-8 lg:left-24 xl:left-28 pointer-events-auto"
           style={{
-            top: 'clamp(68px, 10vh, 96px)',
-            maxWidth: 'clamp(250px, 42vw, 400px)',
+            top: 'clamp(74px, 11vh, 104px)',
+            maxWidth: 'clamp(250px, 42vw, 420px)',
           }}
         >
           <motion.h1
@@ -368,7 +368,7 @@ export default function Hero({ onContactOpen }) {
 
         {/* BOTTOM-LEFT: Bio + Explore CTA */}
         <motion.div
-          className="absolute left-4 sm:left-6 lg:left-12 pointer-events-auto"
+          className="absolute left-4 sm:left-8 lg:left-24 xl:left-28 pointer-events-auto"
           style={{
             bottom: 'clamp(20px, 4vh, 48px)',
             maxWidth: 'clamp(250px, 36vw, 380px)',
