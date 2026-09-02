@@ -136,7 +136,7 @@ export default function Hero({ onContactOpen }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 z-[1] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '46%',
+          top: '51%',
           transform: 'translateY(-50%)',
           fontSize: 'clamp(36px, 12.5vw, 195px)',
           fontWeight: 900,
@@ -169,7 +169,7 @@ export default function Hero({ onContactOpen }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 z-[20] flex items-center justify-center font-serif select-none whitespace-nowrap leading-none px-2 overflow-hidden"
         style={{
-          top: '46%',
+          top: '51%',
           transform: 'translateY(-50%)',
           fontSize: 'clamp(36px, 12.5vw, 195px)',
           fontWeight: 900,
