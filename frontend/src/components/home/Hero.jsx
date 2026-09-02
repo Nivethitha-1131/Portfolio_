@@ -268,10 +268,10 @@ export default function Hero({ onContactOpen }) {
 
         {/* TOP-LEFT: Name + Subtitle */}
         <div
-          className="absolute left-5 sm:left-8 md:left-24 lg:left-32 xl:left-36 pointer-events-auto"
+          className="absolute left-6 sm:left-10 md:left-32 lg:left-44 xl:left-48 pointer-events-auto"
           style={{
             top: 'clamp(80px, 12vh, 112px)',
-            maxWidth: 'clamp(250px, 42vw, 420px)',
+            maxWidth: 'clamp(240px, 34vw, 380px)',
           }}
         >
           <motion.h1
@@ -324,10 +324,10 @@ export default function Hero({ onContactOpen }) {
 
         {/* BOTTOM-LEFT: Bio + Explore CTA */}
         <motion.div
-          className="absolute left-5 sm:left-8 md:left-24 lg:left-32 xl:left-36 pointer-events-auto"
+          className="absolute left-6 sm:left-10 md:left-32 lg:left-44 xl:left-48 pointer-events-auto"
           style={{
             bottom: 'clamp(20px, 4vh, 48px)',
-            maxWidth: 'clamp(250px, 36vw, 380px)',
+            maxWidth: 'clamp(240px, 32vw, 360px)',
           }}
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}

@@ -181,7 +181,7 @@ export default function LeftSidebar() {
   return (
     <aside
       aria-label="Social links and life perspective"
-      className="fixed left-6 xl:left-8 top-0 bottom-0 z-40 hidden lg:flex flex-col items-center pt-24 pb-8 pointer-events-none"
+      className="fixed left-5 xl:left-7 top-0 bottom-0 z-40 hidden lg:flex flex-col items-center pt-24 pb-8 pointer-events-none"
       style={{ willChange: 'auto', transform: 'translateZ(0)', isolation: 'isolate' }}
     >
       {/* Social icons */}

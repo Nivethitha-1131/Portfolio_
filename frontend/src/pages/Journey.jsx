@@ -20,7 +20,7 @@ export default function Journey() {
       className="relative py-16 sm:py-24 lg:py-36"
       aria-label="Journey — education and experience"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-24 md:pr-8 lg:pl-32 lg:pr-12 xl:pl-36 xl:pr-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16">
         <SectionReveal>
           <AnimatedHeading
             label="02 — Journey"

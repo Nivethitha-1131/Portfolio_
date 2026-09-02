@@ -42,7 +42,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="border-t border-hairline py-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-24 md:pr-8 lg:pl-32 lg:pr-12 xl:pl-36 xl:pr-16 flex flex-col items-center gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-32 md:pr-8 lg:pl-44 lg:pr-12 xl:pl-48 xl:pr-16 flex flex-col items-center gap-6">
           {/* Back to Home CTA */}
           <div>
             <button
