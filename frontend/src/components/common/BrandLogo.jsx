@@ -12,44 +12,98 @@ import { motion, useReducedMotion } from 'framer-motion';
  * - Glassmorphic rounded pill styling with ambient gold illumination.
  */
 /**
- * Creative 'N' Monogram Emblem for Nivethitha Ramesh.
- * High-fashion serif letterform with rich gold gradient and a delicate celestial sparkle at the apex.
+ * Creative 3D Sculpted 'N' Brand Logo for Nivethitha Ramesh.
+ *
+ * Bespoke geometric brand mark:
+ * - Two solid architectural vertical pillars in warm polished gold.
+ * - Dimensional folded diagonal ribbon bridge with specular lighting and depth.
+ * - Solid filled vector geometry for 100% bold clarity across all screen resolutions.
+ * - Signature celestial diamond sparkle accent at the apex.
  */
-function CreativeNMonogram() {
+function CreativeNBrandLogo() {
   return (
     <svg
-      viewBox="0 0 20 20"
-      className="w-3.5 h-3.5 sm:w-4 sm:h-4 overflow-visible"
+      viewBox="0 0 24 24"
+      className="w-4 h-4 sm:w-[18px] sm:h-[18px] overflow-visible drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="monogramGold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFF8E0" />
+        {/* Left Pillar: Radiant Champagne to Antique Gold */}
+        <linearGradient id="nLogoLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFF4D0" />
           <stop offset="35%" stopColor="#F5DF9E" />
           <stop offset="70%" stopColor="#C9A45C" />
-          <stop offset="100%" stopColor="#8E6520" />
+          <stop offset="100%" stopColor="#7A5214" />
         </linearGradient>
+
+        {/* 3D Diagonal Ribbon: Dimensional light-facing facet */}
+        <linearGradient id="nLogoDiag" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="20%" stopColor="#FFF0C2" />
+          <stop offset="55%" stopColor="#E0B865" />
+          <stop offset="85%" stopColor="#C9A45C" />
+          <stop offset="100%" stopColor="#6E470E" />
+        </linearGradient>
+
+        {/* Right Pillar: Deep Sculpted Bronze-Gold */}
+        <linearGradient id="nLogoRight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#F5DF9E" />
+          <stop offset="40%" stopColor="#C9A45C" />
+          <stop offset="75%" stopColor="#966F2C" />
+          <stop offset="100%" stopColor="#55370A" />
+        </linearGradient>
+
+        {/* Dynamic drop shadow under diagonal fold */}
+        <filter id="nFoldShadow" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="-0.6" dy="1" stdDeviation="0.8" floodColor="#1A0F02" floodOpacity="0.75" />
+        </filter>
       </defs>
 
-      {/* Left upright stem with serifs */}
-      <line x1="4" y1="4.2" x2="7.6" y2="4.2" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="5.8" y1="4.2" x2="5.8" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="4" y1="15.8" x2="7.6" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
+      {/* ── Left Architectural Pillar (Solid) ── */}
+      <rect
+        x="3.5"
+        y="3"
+        width="4.8"
+        height="18"
+        rx="1.5"
+        fill="url(#nLogoLeft)"
+      />
 
-      {/* Bold high-contrast diagonal stroke */}
-      <line x1="5.8" y1="4.6" x2="14.2" y2="15.4" stroke="url(#monogramGold)" strokeWidth="2.8" strokeLinecap="round" />
+      {/* ── Right Architectural Pillar (Solid) ── */}
+      <rect
+        x="15.7"
+        y="3"
+        width="4.8"
+        height="18"
+        rx="1.5"
+        fill="url(#nLogoRight)"
+      />
 
-      {/* Right hairline upright stem with serifs */}
-      <line x1="12.4" y1="4.2" x2="16" y2="4.2" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="14.2" y1="4.2" x2="14.2" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
-      <line x1="12.4" y1="15.8" x2="16" y2="15.8" stroke="url(#monogramGold)" strokeWidth="1.2" strokeLinecap="round" />
-
-      {/* Creative celestial four-point diamond sparkle star at apex */}
+      {/* ── 3D Overlapping Diagonal Ribbon (Solid) ── */}
       <path
-        d="M 16 1.8 Q 16 3.2 17.4 3.2 Q 16 3.2 16 4.6 Q 16 3.2 14.6 3.2 Q 16 3.2 16 1.8 Z"
-        fill="#FFFDF2"
+        d="M 3.5 3.8 L 8.3 3 L 20.5 20.2 L 15.7 21 Z"
+        fill="url(#nLogoDiag)"
+        filter="url(#nFoldShadow)"
+      />
+
+      {/* Specular Glint Ridge running down diagonal apex */}
+      <line
+        x1="4.6"
+        y1="3.8"
+        x2="19.4"
+        y2="20.2"
+        stroke="#FFFFFF"
+        strokeWidth="0.9"
+        strokeLinecap="round"
+        opacity="0.9"
+      />
+
+      {/* ── Celestial Sparkle Star perched on the top-right apex ── */}
+      <path
+        d="M 20.5 0.8 Q 20.5 2.5 22.2 2.5 Q 20.5 2.5 20.5 4.2 Q 20.5 2.5 18.8 2.5 Q 20.5 2.5 20.5 0.8 Z"
+        fill="#FFFDF5"
       />
     </svg>
   );
@@ -121,18 +175,18 @@ export default function BrandLogo({ onClick, href = '#home', className = '' }) {
           transition-all duration-300
         "
       >
-        {/* ── Creative 'N' Monogram Emblem ── */}
-        <div className="relative flex items-center justify-center w-5 h-5 sm:w-5.5 sm:h-5.5 rounded-full bg-gradient-to-br from-gold/20 via-gold/10 to-transparent border border-gold/35 group-hover:border-gold group-hover:shadow-[0_0_12px_rgba(201,162,75,0.45)] transition-all duration-300 shrink-0">
+        {/* ── Creative 'N' Brand Logo Emblem ── */}
+        <div className="relative flex items-center justify-center w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-gradient-to-br from-gold/25 via-[#C9A45C]/15 to-transparent border border-gold/45 group-hover:border-gold group-hover:shadow-[0_0_16px_rgba(201,162,75,0.5)] transition-all duration-300 shrink-0">
           <motion.div
             className="flex items-center justify-center"
             animate={
               isHovered && !shouldReduceMotion
-                ? { scale: 1.15, rotate: [0, -4, 4, 0] }
+                ? { scale: 1.12, rotate: [0, -3, 3, 0] }
                 : { scale: 1, rotate: 0 }
             }
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
-            <CreativeNMonogram />
+            <CreativeNBrandLogo />
           </motion.div>
         </div>
 
