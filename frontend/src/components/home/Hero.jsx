@@ -322,28 +322,49 @@ export default function Hero({ onContactOpen }) {
           </motion.div>
         </div>
 
-        {/* BOTTOM-LEFT: Bio + Explore CTA */}
+        {/* BOTTOM-LEFT: Bio + Achievements + Explore CTA */}
         <motion.div
           className="
             absolute left-5 sm:left-8 md:left-32 lg:left-44 xl:left-48 pointer-events-auto
-            bottom-[clamp(22px,4vh,48px)]
+            bottom-[clamp(18px,3.2vh,44px)]
           "
           style={{
-            maxWidth: 'clamp(240px, 32vw, 360px)',
+            maxWidth: 'clamp(270px, 36vw, 400px)',
           }}
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 1.5, ease: EASE_OUT }}
         >
           <p
-            className="text-cream font-light leading-relaxed mb-3.5 sm:mb-5"
-            style={{ fontSize: 'clamp(0.88rem, 1.3vw, 1.1rem)' }}
+            className="text-cream font-light leading-relaxed mb-3 sm:mb-5"
+            style={{ fontSize: 'clamp(0.85rem, 1.25vw, 1.1rem)' }}
           >
             I turn ideas into intelligent systems using{' '}
             <span className="text-gold font-medium">data</span>,{' '}
             code and{' '}
             <span className="text-gold font-medium">creativity</span>.
           </p>
+
+          {/* Mobile-only Clean Inline Achievements (100% on left, zero photo overlap, no heavy card) */}
+          <div className="md:hidden grid grid-cols-2 gap-x-3 gap-y-2 mb-3.5 pt-2.5 border-t border-hairline/50">
+            {STATS.map((stat, i) => (
+              <div key={stat.line1 + stat.line2} className="flex items-baseline gap-1.5">
+                <span className="font-serif text-gold font-bold text-[13.5px] leading-none tabular-nums shrink-0">
+                  <CountUp
+                    target={stat.target}
+                    suffix={stat.suffix}
+                    delay={i * 120}
+                    duration={800}
+                    started={statsStarted}
+                    reduced={shouldReduceMotion}
+                  />
+                </span>
+                <span className="text-[7.5px] text-slate/90 leading-tight uppercase tracking-wider font-mono">
+                  {stat.line1} {stat.line2}
+                </span>
+              </div>
+            ))}
+          </div>
 
           <div>
             <a
@@ -356,7 +377,7 @@ export default function Hero({ onContactOpen }) {
                 inline-flex items-center gap-2
                 bg-cream text-background
                 text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase
-                px-4 py-3 sm:px-6 sm:py-4
+                px-4 py-2.5 sm:px-6 sm:py-4
                 hover:bg-gold
                 transition-colors duration-250
                 cursor-pointer select-none
@@ -366,50 +387,6 @@ export default function Hero({ onContactOpen }) {
               Explore My Work
               <ArrowRightIcon />
             </a>
-          </div>
-        </motion.div>
-
-        {/* MOBILE CREATIVE ACHIEVEMENTS EMBLEM (< md screens only) */}
-        <motion.div
-          className="
-            md:hidden absolute right-3.5 sm:right-6 z-30 pointer-events-auto
-            top-[clamp(195px,29vh,245px)]
-            w-[126px] sm:w-[142px]
-            bg-surface/85 backdrop-blur-xl border border-gold/35 rounded-xl
-            p-2.5 sm:p-3 shadow-[0_8px_32px_rgba(0,0,0,0.55)]
-          "
-          initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 1.1, ease: EASE_OUT }}
-        >
-          {/* Header with glowing live pulse */}
-          <div className="flex items-center justify-between pb-1.5 mb-1.5 border-b border-hairline/60">
-            <span className="text-[7.5px] font-mono tracking-[0.22em] uppercase text-gold font-semibold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shadow-[0_0_6px_rgba(201,164,92,0.8)]" />
-              Impact
-            </span>
-            <span className="text-[7px] font-mono text-slate tracking-wider">2024–26</span>
-          </div>
-
-          {/* 2x2 Clean Minimalist Stat Matrix */}
-          <div className="grid grid-cols-2 gap-x-2 gap-y-2">
-            {STATS.map((stat, i) => (
-              <div key={stat.line1 + stat.line2} className="flex flex-col">
-                <div className="font-serif text-gold font-bold text-[14px] leading-none tabular-nums">
-                  <CountUp
-                    target={stat.target}
-                    suffix={stat.suffix}
-                    delay={i * 140}
-                    duration={900}
-                    started={statsStarted}
-                    reduced={shouldReduceMotion}
-                  />
-                </div>
-                <div className="text-[7.5px] text-slate/90 mt-0.5 leading-tight font-medium">
-                  {stat.line1} {stat.line2}
-                </div>
-              </div>
-            ))}
           </div>
         </motion.div>
 
