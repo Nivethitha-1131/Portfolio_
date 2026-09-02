@@ -13,7 +13,7 @@ export default function Innovation() {
       className="relative py-16 sm:py-24 lg:py-36 bg-surface/30"
       aria-label="Innovation — project showcase"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-24 md:pr-8 lg:pl-32 lg:pr-12 xl:pl-36 xl:pr-16">
         <SectionReveal>
           <AnimatedHeading label="03 — Innovation" heading={"Selected\nWork"} />
 

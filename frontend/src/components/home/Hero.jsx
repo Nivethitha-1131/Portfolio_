@@ -267,7 +267,7 @@ export default function Hero({ onContactOpen }) {
 
         {/* TOP-LEFT: Name + Subtitle */}
         <div
-          className="absolute left-4 sm:left-8 lg:left-36 xl:left-40 pointer-events-auto"
+          className="absolute left-5 sm:left-8 md:left-24 lg:left-32 xl:left-36 pointer-events-auto"
           style={{
             top: 'clamp(80px, 12vh, 112px)',
             maxWidth: 'clamp(250px, 42vw, 420px)',
@@ -308,9 +308,9 @@ export default function Hero({ onContactOpen }) {
             ))}
           </p>
 
-          {/* Social icons — mobile/tablet only (LeftSidebar covers lg+) */}
+          {/* Social icons — mobile only (LeftSidebar covers md+) */}
           <motion.div
-            className="flex items-center gap-4 sm:gap-5 mt-3.5 sm:mt-4 lg:hidden"
+            className="flex items-center gap-4 sm:gap-5 mt-3.5 sm:mt-4 md:hidden"
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.85, ease: EASE_OUT }}
@@ -368,7 +368,7 @@ export default function Hero({ onContactOpen }) {
 
         {/* BOTTOM-LEFT: Bio + Explore CTA */}
         <motion.div
-          className="absolute left-4 sm:left-8 lg:left-36 xl:left-40 pointer-events-auto"
+          className="absolute left-5 sm:left-8 md:left-24 lg:left-32 xl:left-36 pointer-events-auto"
           style={{
             bottom: 'clamp(20px, 4vh, 48px)',
             maxWidth: 'clamp(250px, 36vw, 380px)',

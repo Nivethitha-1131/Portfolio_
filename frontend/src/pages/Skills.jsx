@@ -15,7 +15,7 @@ export default function Skills() {
       className="relative py-16 sm:py-24 lg:py-36"
       aria-label="Skills — technical capabilities"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:pl-24 md:pr-8 lg:pl-32 lg:pr-12 xl:pl-36 xl:pr-16">
         <SectionReveal>
           <AnimatedHeading label="04 — Skills" heading={"Technical\nCapabilities"} />
 
