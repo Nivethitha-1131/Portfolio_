@@ -193,10 +193,6 @@ export default function LogoLoop() {
         </div>
       </div>
 
-      {/* Subtle Hint */}
-      <p className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-slate/50 text-center select-none">
-        ✦ Interactive Logo Stream • Hover or touch to inspect
-      </p>
     </div>
   );
 }
