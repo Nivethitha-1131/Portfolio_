@@ -96,7 +96,7 @@ export default function App() {
           </div>
 
           {/* Copyright, Life Perspective & Social links */}
-          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-center sm:text-left pt-4 border-t border-hairline/40">
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4 text-center sm:text-left pt-4">
             <p className="text-[10px] sm:text-[11px] tracking-widest uppercase text-slate">
               © {new Date().getFullYear()} Nivethitha Ramesh
             </p>

@@ -138,7 +138,7 @@ export default function Hero({ onContactOpen }) {
         style={{
           top: '51%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(32px, 11vw, 165px)',
+          fontSize: 'clamp(35px, 8.7vw, 73px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: '#7B1829',
@@ -171,7 +171,7 @@ export default function Hero({ onContactOpen }) {
         style={{
           top: '51%',
           transform: 'translateY(-50%)',
-          fontSize: 'clamp(32px, 11vw, 165px)',
+          fontSize: 'clamp(35px, 8.7vw, 73px)',
           fontWeight: 900,
           letterSpacing: '-0.015em',
           color: 'transparent',
@@ -203,7 +203,7 @@ export default function Hero({ onContactOpen }) {
           className="relative flex items-center justify-center"
           style={{
             marginTop: 'clamp(12px, 2.2vh, 24px)',
-            height: 'clamp(270px, 48vh, 550px)',
+            height: 'clamp(290px, 52vh, 580px)',
             width: 'auto',
             WebkitMaskImage: `
               linear-gradient(
@@ -381,7 +381,7 @@ export default function Hero({ onContactOpen }) {
             ))}
           </div>
 
-          <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="flex items-center gap-3 sm:gap-4">
             <a
               href="#innovation"
               onClick={(e) => {
@@ -389,9 +389,9 @@ export default function Hero({ onContactOpen }) {
                 document.querySelector('#innovation')?.scrollIntoView({ behavior: 'smooth' });
               }}
               className="
-                inline-flex items-center gap-2
+                inline-flex items-center gap-2 whitespace-nowrap
                 bg-cream text-background
-                text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase
+                text-[9px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase
                 px-4 py-2.5 sm:px-6 sm:py-4
                 hover:bg-gold
                 transition-colors duration-250
@@ -403,47 +403,51 @@ export default function Hero({ onContactOpen }) {
               <ArrowRightIcon />
             </a>
 
-            {/* Mobile-only: Clean paired Scroll Pill */}
+            {/* Mobile-only: PC-style vertical scroll indicator */}
             <a
               href="#journey"
               onClick={(e) => {
                 e.preventDefault();
                 document.querySelector('#journey')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="
-                md:hidden group inline-flex items-center gap-2
-                px-3 py-2
-                border border-hairline/90 hover:border-gold/60
-                bg-surface/85 backdrop-blur-md rounded-full
-                text-slate hover:text-gold
-                transition-all duration-200 cursor-pointer select-none
-              "
+              className="md:hidden group flex flex-col items-center gap-1.5 focus:outline-none select-none p-1 cursor-pointer"
               aria-label="Scroll down to Journey"
             >
-              <span className="text-[8.5px] font-mono tracking-[0.2em] uppercase font-medium group-hover:text-gold transition-colors">
+              <span className="text-[8px] font-medium tracking-[0.25em] uppercase text-slate/80 group-hover:text-gold transition-colors duration-200">
                 Scroll
               </span>
               <motion.div
-                animate={shouldReduceMotion ? {} : { y: [0, 2.5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-5 h-5 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold"
+                animate={shouldReduceMotion ? {} : { y: [0, 6, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                className="
+                  w-7 h-7
+                  rounded-full
+                  border border-hairline group-hover:border-gold/70
+                  flex items-center justify-center
+                  text-slate group-hover:text-gold
+                  bg-surface/60 backdrop-blur-sm
+                  group-hover:shadow-[0_0_14px_rgba(201,162,75,0.35)]
+                  transition-all duration-300
+                "
               >
                 <svg
-                  width="10"
-                  height="10"
+                  width="13"
+                  height="13"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2.5"
+                  strokeWidth="2.2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
+                  className="translate-y-0.5"
                 >
                   <path d="M7 10l5 5 5-5" />
                 </svg>
               </motion.div>
             </a>
           </div>
+
         </motion.div>
 
         {/* BOTTOM-RIGHT: Stat counters (md+ screens) */}
